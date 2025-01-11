@@ -8,12 +8,14 @@ function FullCampaignTable() {
   const [filter, setFilter] = useState("All");
   const [isLoading, setIsLoading] = useState(false);
 
+  const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com";
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         setIsLoading(true);
         // Fetch full campaigns
-        const resFull = await fetch("http://localhost:3001/api/full-campaigns");
+        const resFull = await fetch(`${BASE_URL}/api/full-campaigns`);
         const fullJson = await resFull.json();
         setFullCampaigns(fullJson);
         setIsLoading(false);

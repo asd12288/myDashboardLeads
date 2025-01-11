@@ -1,7 +1,7 @@
 // components/BudgetAdmin.jsx
 import { useEffect, useState } from "react";
 
-const BASE_URL = "http://localhost:3001";
+const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com";
 
 function BudgetAdmin() {
   const [budgetData, setBudgetData] = useState([]);
@@ -20,7 +20,7 @@ function BudgetAdmin() {
 
   const fetchBudgetData = async () => {
     try {
-      const res = await fetch("http://localhost:3001/api/budget", {
+      const res = await fetch(`${BASE_URL}/api/budget`, {
         headers: {
           role: localStorage.getItem("role"),
         },

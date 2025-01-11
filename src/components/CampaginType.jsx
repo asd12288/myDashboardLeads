@@ -12,3 +12,4 @@ function CampaginType({ type, numAccounts, costPerMonth }) {
 }
 
 export default CampaginType;
+
