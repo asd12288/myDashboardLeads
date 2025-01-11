@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { moneyConvertor } from "../../utilities/moneyConvertor";
 
 // const BASE_URL = "http://localhost:30010";
-const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com" // For production
+const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com"; // For production
 
 // Note: we now track the 'File' separately from the existing URL
 const initialState = {
@@ -76,7 +76,6 @@ function FullCampaignsAdmin() {
   // Add a new campaign (including the image file, if any)
   const addCampaign = async () => {
     // Validate required fields
-  
 
     try {
       setIsLoading(true);
@@ -267,7 +266,10 @@ function FullCampaignsAdmin() {
               <td>{moneyConvertor(campaign.costPerResult)}</td>
               <td>{moneyConvertor(campaign.amountSpent)}</td>
               <td>
-                <button className="edit btn" onClick={() => startEdit(campaign)}>
+                <button
+                  className="edit btn"
+                  onClick={() => startEdit(campaign)}
+                >
                   Edit
                 </button>
                 <button
@@ -354,7 +356,7 @@ function FullCampaignsAdmin() {
         <input
           type="number"
           name="ctr"
-          placeholder="CTR"
+          placeholder="CTR %"
           value={newCampaign.ctr}
           onChange={handleNewCampaignChange}
         />
@@ -478,7 +480,7 @@ function FullCampaignsAdmin() {
           <input
             type="number"
             name="ctr"
-            placeholder="CTR"
+            placeholder="CTR %"
             value={editCampaign.ctr}
             onChange={handleEditCampaignChange}
           />
