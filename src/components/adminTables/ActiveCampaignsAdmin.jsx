@@ -1,8 +1,9 @@
 // components/ActiveCampaignsAdmin.jsx
 import { useEffect, useState } from "react";
 
-const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com" 
-
+// const BASE_URL = "http://localhost:30010";
+  const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com" // For production
+  
 function ActiveCampaignsAdmin() {
   const [campaigns, setCampaigns] = useState([]);
   const [newCampaign, setNewCampaign] = useState({

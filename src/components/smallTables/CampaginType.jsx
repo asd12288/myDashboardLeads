@@ -1,4 +1,4 @@
-import { moneyConvertor } from "../utilities/moneyConvertor";
+import { moneyConvertor } from "../../utilities/moneyConvertor";
 
 function CampaginType({ type, numAccounts, costPerMonth }) {
   return (
@@ -12,4 +12,3 @@ function CampaginType({ type, numAccounts, costPerMonth }) {
 }
 
 export default CampaginType;
-

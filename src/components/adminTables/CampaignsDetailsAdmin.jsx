@@ -1,7 +1,8 @@
 // components/CampaignsDetailsAdmin.jsx
 import { useEffect, useState } from "react";
 
-const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com";
+// const BASE_URL = "http://localhost:30010";
+  const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com" // For production
 
 function CampaignsDetailsAdmin() {
   const [details, setDetails] = useState([]);
@@ -100,7 +101,6 @@ function CampaignsDetailsAdmin() {
       <table border="1" cellPadding="5">
         <thead>
           <tr>
-            <th>ID</th>
             <th>Type</th>
             <th>#Accounts</th>
             <th>Cost/Month</th>
@@ -112,15 +112,14 @@ function CampaignsDetailsAdmin() {
             const rowId = item.id ?? idx; // fallback to index if item.id doesn’t exist
             return (
               <tr key={rowId}>
-                <td>{item.id || "(none)"}</td>
                 <td>{item.type}</td>
                 <td>{item.numAccounts}</td>
                 <td>{item.costPerMonth}</td>
                 <td>
-                  <button onClick={() => startEdit({ ...item, id: rowId })}>
+                  <button className="edit" onClick={() => startEdit({ ...item, id: rowId })}>
                     Edit
                   </button>
-                  <button onClick={() => deleteDetail(rowId)}>Delete</button>
+                  <button className="delete btn" onClick={() => deleteDetail(rowId)}>Delete</button>
                 </td>
               </tr>
             );

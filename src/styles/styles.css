@@ -264,7 +264,7 @@ main h2 {
 .total-spending {
   margin-top: 15px;
   text-align: right;
-  font-weight: bold;
+  
 }
 
 /* Maintenance Table */
@@ -341,6 +341,11 @@ main h2 {
   color: #555;
 }
 
+.fee {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
 /* Styling for Remaining Budget Section */
 .remaining-budget {
   text-align: center;
@@ -371,9 +376,10 @@ main h2 {
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border: none;
   transition: all 0.2s ease;
+  cursor: pointer;
 }
 .logout:hover {
-  background-color: var(--secondary-color);
+  background-color: var(--dark-color);
 }
 
 .btn {
@@ -386,6 +392,7 @@ main h2 {
   font-weight: bold;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   cursor: pointer;
+  margin: 1rem;
 }
 
 .btn:hover {
@@ -410,6 +417,8 @@ table {
   margin-top: 20px;
   background-color: #f5f5f5;
   padding: 2rem 5rem;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .admin-section h2 {
@@ -423,6 +432,7 @@ table {
   font-size: 1.6rem;
   border: 1px solid #ccc;
   border-radius: 5px;
+  margin: 1rem;
 }
 
 .admin-section select {
@@ -431,6 +441,28 @@ table {
   font-size: 1.6rem;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+.admin-section table {
+  width: 100%;
+  border-collapse: collapse;
+
+}
+
+.admin-section th {
+  padding: 10px;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.admin-section td {
+  padding: 10px;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #ddd;
 }
 
 .delete {

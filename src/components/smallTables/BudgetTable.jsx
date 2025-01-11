@@ -1,8 +1,11 @@
 import BudgetItem from "./BudgetItem";
-import { moneyConvertor } from "../utilities/moneyConvertor";
+import { moneyConvertor } from "../../utilities/moneyConvertor";
 
 function BudgetTable({ budgetData, fee }) {
-  const totalBudget = budgetData.reduce((sum, item) => sum + item.amount, 0);
+  const totalBudget = budgetData.reduce(
+    (sum, item) => Number(sum) + Number(item.amount),
+    0
+  );
 
   return (
     <div className="budget-summary">
@@ -23,7 +26,7 @@ function BudgetTable({ budgetData, fee }) {
             </td>
           </tr>
           <tr>
-            <td colSpan="2" style={{ textAlign: "left", fontSize: "0.9rem" }}>
+            <td className="fee" colSpan="2">
               Fee crypto: {fee}
             </td>
           </tr>

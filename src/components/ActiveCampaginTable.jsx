@@ -1,8 +1,8 @@
-import CampaginItem from "./CampaginItem";
+import CampaginItem from "./smallTables/CampaginItem";
 import { moneyConvertor } from "../utilities/moneyConvertor";
+import { NavLink } from "react-router-dom";
 
 function ActiveCampaginTable({ fullCampaigns }) {
-
   const filtredFullCampaings = fullCampaigns.filter(
     (item) => item.status === "Active"
   );
@@ -12,9 +12,8 @@ function ActiveCampaginTable({ fullCampaigns }) {
     0
   );
 
-  
-    return (
-      <div className="active-campaigns">
+  return (
+    <div className="active-campaigns">
       <table>
         <thead>
           <tr>
@@ -35,8 +34,10 @@ function ActiveCampaginTable({ fullCampaigns }) {
         </tbody>
       </table>
       <div className="total-spending">
-        <strong>Total spending of the day: </strong>
-        {moneyConvertor(totalBudgetDaily)}
+        Total spending of the day:
+        <strong> {moneyConvertor(totalBudgetDaily)}</strong>
+        <br />
+        <NavLink to="/campaign">View All Campaigns</NavLink>
       </div>
     </div>
   );

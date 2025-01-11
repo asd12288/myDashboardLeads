@@ -1,7 +1,6 @@
-import { moneyConvertor } from "../utilities/moneyConvertor";
+import { moneyConvertor } from "../../utilities/moneyConvertor";
 
 function BudgetOverview({ totalMaintenanceFee, fee, daysReserve }) {
-  
   return (
     <div className="budget-details">
       <h3>Budget Overview</h3>

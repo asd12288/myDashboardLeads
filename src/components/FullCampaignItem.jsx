@@ -2,7 +2,6 @@ import { useState } from "react";
 import styles from "./FullCampaignItem.module.css";
 import { moneyConvertor } from "../utilities/moneyConvertor";
 
-
 function FullCampaignItem({
   campaignName,
   status,
@@ -21,15 +20,12 @@ function FullCampaignItem({
 }) {
   const [isHovered, setIsHovered] = useState(false);
 
-  const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com";
+  // const BASE_URL = "http://localhost:30010";
+  const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com" // For production
 
   return (
     <>
-      <tr
-        className={styles.campaignRow}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-      >
+      <tr>
         <td>{campaignName}</td>
         <td>
           <span className={`status ${status.toLowerCase()}`}>{status}</span>
@@ -45,6 +41,13 @@ function FullCampaignItem({
         <td>{clicks}</td>
         <td>{costPerResult}</td>
         <td>{moneyConvertor(amountSpent)}</td>
+        <td
+          className={styles.campaignRow}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          Screen Capture &rarr;
+        </td>
       </tr>
       {isHovered && imageUrl && (
         <div className={styles.imagePopup}>

@@ -8,7 +8,8 @@ function FullCampaignTable() {
   const [filter, setFilter] = useState("All");
   const [isLoading, setIsLoading] = useState(false);
 
-  const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com";
+  // const BASE_URL = "http://localhost:30010";
+  const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com" // For production
 
   useEffect(() => {
     const fetchData = async () => {
@@ -80,6 +81,7 @@ function FullCampaignTable() {
             <th>Clicks</th>
             <th>Cost Per Result</th>
             <th>Amount Spent</th>
+            <th>Image</th>
           </tr>
         </thead>
         <tbody>

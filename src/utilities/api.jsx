@@ -1,7 +1,10 @@
 import axios from "axios";
 
+// const BASE_URL = "http://localhost:30010";
+const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com"; // For production
+
 const api = axios.create({
-  baseURL: "https://mydashleads-70713a400aca.herokuapp.com",
+  baseURL: BASE_URL,
 });
 
 // Add role header to all requests

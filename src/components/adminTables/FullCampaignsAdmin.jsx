@@ -1,8 +1,9 @@
 // FullCampaignsAdmin.jsx
 import { useState, useEffect } from "react";
-import { moneyConvertor } from "../utilities/moneyConvertor";
+import { moneyConvertor } from "../../utilities/moneyConvertor";
 
-const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com";
+// const BASE_URL = "http://localhost:30010";
+const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com" // For production
 
 // Note: we now track the 'File' separately from the existing URL
 const initialState = {
@@ -75,15 +76,7 @@ function FullCampaignsAdmin() {
   // Add a new campaign (including the image file, if any)
   const addCampaign = async () => {
     // Validate required fields
-    if (
-      !newCampaign.campaignName ||
-      !newCampaign.status ||
-      !newCampaign.budgetDaily ||
-      !newCampaign.startingDate
-    ) {
-      alert("Please fill in all required fields.");
-      return;
-    }
+  
 
     try {
       setIsLoading(true);
@@ -163,16 +156,7 @@ function FullCampaignsAdmin() {
 
   // Save changes to the edited campaign
   const saveEdit = async () => {
-    if (
-      !editCampaign.campaignName ||
-      !editCampaign.status ||
-      !editCampaign.budgetDaily ||
-      !editCampaign.startingDate
-    ) {
-      alert("Please fill in all required fields.");
-      return;
-    }
-
+    if (!editCampaign) return;
     try {
       setIsLoading(true);
       const formData = new FormData();
@@ -283,11 +267,11 @@ function FullCampaignsAdmin() {
               <td>{moneyConvertor(campaign.costPerResult)}</td>
               <td>{moneyConvertor(campaign.amountSpent)}</td>
               <td>
-                <button className="edit" onClick={() => startEdit(campaign)}>
+                <button className="edit btn" onClick={() => startEdit(campaign)}>
                   Edit
                 </button>
                 <button
-                  className="delete"
+                  className="delete btn "
                   onClick={() => deleteCampaign(campaign.id)}
                 >
                   Delete
@@ -308,15 +292,18 @@ function FullCampaignsAdmin() {
           value={newCampaign.campaignName}
           onChange={handleNewCampaignChange}
         />
-        <input
-          type="text"
+        <select
           name="status"
           placeholder="Status"
           value={newCampaign.status}
           onChange={handleNewCampaignChange}
-        />
+        >
+          <option value="Learning">Learning</option>
+          <option value="Active">Active</option>
+          <option value="Paused">Paused</option>
+        </select>
         <input
-          type="text"
+          type="number"
           name="budgetDaily"
           placeholder="Daily Budget"
           value={newCampaign.budgetDaily}
@@ -412,7 +399,7 @@ function FullCampaignsAdmin() {
             style={{ maxWidth: "200px", display: "block", marginTop: "10px" }}
           />
         )}
-        <button className="add" onClick={addCampaign}>
+        <button className="add btn " onClick={addCampaign}>
           Add Campaign
         </button>
       </div>
@@ -540,10 +527,10 @@ function FullCampaignsAdmin() {
               style={{ maxWidth: "200px", display: "block", marginTop: "10px" }}
             />
           )}
-          <button className="save" onClick={saveEdit}>
+          <button className="save btn" onClick={saveEdit}>
             Save Changes
           </button>
-          <button className="cancel" onClick={cancelEdit}>
+          <button className="cancel btn" onClick={cancelEdit}>
             Cancel
           </button>
         </div>

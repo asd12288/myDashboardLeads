@@ -1,7 +1,7 @@
 // App.js
-import BudgetAdmin from "../components/BudgetAdmin";
-import CampaignsDetailsAdmin from "../components/CampaignsDetailsAdmin";
-import FullCampaignsAdmin from "../components/FullCampaignsAdmin";
+import BudgetAdmin from "../components/adminTables/BudgetAdmin";
+import CampaignsDetailsAdmin from "../components/adminTables/CampaignsDetailsAdmin";
+import FullCampaignsAdmin from "../components/adminTables/FullCampaignsAdmin";
 import Dashboard from "./Dashboard";
 
 function Admin() {

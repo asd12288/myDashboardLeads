@@ -1,8 +1,9 @@
 // components/BudgetAdmin.jsx
 import { useEffect, useState } from "react";
 
-const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com";
-
+// const BASE_URL = "http://localhost:30010";
+  const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com" // For production
+  
 function BudgetAdmin() {
   const [budgetData, setBudgetData] = useState([]);
   const [newBudgetItem, setNewBudgetItem] = useState({
@@ -116,11 +117,11 @@ function BudgetAdmin() {
               <td>{item.date}</td>
               <td>{item.amount}</td>
               <td>
-                <button className="edit" onClick={() => startEdit(item)}>
+                <button className="edit btn " onClick={() => startEdit(item)}>
                   Edit
                 </button>
                 <button
-                  className="delete"
+                  className="delete btn "
                   onClick={() => deleteBudgetItem(item.id)}
                 >
                   Delete
@@ -150,7 +151,7 @@ function BudgetAdmin() {
             setNewBudgetItem((prev) => ({ ...prev, amount: e.target.value }))
           }
         />
-        <button className="add" onClick={addBudgetItem}>
+        <button className="add btn " onClick={addBudgetItem}>
           Add
         </button>
       </div>
@@ -181,10 +182,10 @@ function BudgetAdmin() {
             }
           />
           <div>
-            <button className="save" onClick={saveEdit}>
+            <button className="save btn " onClick={saveEdit}>
               Save
             </button>
-            <button className="cancel" onClick={cancelEdit}>
+            <button className="cancel btn " onClick={cancelEdit}>
               Cancel
             </button>
           </div>

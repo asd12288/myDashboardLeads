@@ -1,4 +1,4 @@
-import { moneyConvertor } from "../utilities/moneyConvertor";
+import { moneyConvertor } from "../../utilities/moneyConvertor";
 
 function BudgetTotal({ totalBudget, fee, totalMaintenanceFee }) {
   return (

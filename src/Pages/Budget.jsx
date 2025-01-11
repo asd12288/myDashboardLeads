@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import Dashboard from "./Dashboard";
-import BudgetTable from "../components/BudgetTable";
+import BudgetTable from "../components/smallTables/BudgetTable";
 import ActiveCampaginTable from "../components/ActiveCampaginTable";
-import MaintenanceTable from "../components/MaintenanceTable";
-import BudgetOverview from "../components/BudgetOverview";
-import BudgetTotal from "../components/BudgetTotal";
+import MaintenanceTable from "../components/smallTables/MaintenanceTable";
+import BudgetOverview from "../components/smallTables/BudgetOverview";
+import BudgetTotal from "../components/smallTables/BudgetTotal";
 import LoadingScreen from "../components/LoadingScreen";
 
 function Budget() {
@@ -14,7 +14,8 @@ function Budget() {
   const [campaignsDetails, setCampaignsDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com";
+  // const BASE_URL = "http://localhost:30010";
+  const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com" // For production
 
   const totalBudgetDaily = fullCampaigns.reduce(
     (sum, item) => Number(sum) + (Number(item.budgetDaily) || 0),
