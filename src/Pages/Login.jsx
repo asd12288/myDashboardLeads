@@ -7,10 +7,12 @@ function Login() {
   const [password, setPassword] = useState("");
   const [users, setUsers] = useState([]);
 
+  const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com";
+
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/users");
+        const response = await fetch(`${BASE_URL}/api/users`);
         const data = await response.json();
         setUsers(data);
       } catch (error) {
