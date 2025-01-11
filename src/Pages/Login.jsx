@@ -1,43 +1,47 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [users, setUsers] = useState([]);
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com";
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const res = await fetch(`${BASE_URL}/api/users`, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-        });
-        // ...rest of your login logic
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      }
-    };
-    fetchUsers();
-  }, []);
-
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    const user = users.find(
-      (u) => u.username === username && u.password === password
-    );
+    setError("");
+    setIsLoading(true);
 
-    if (user) {
-      localStorage.setItem("user", username);
-      localStorage.setItem("role", user.role);
-      navigate(user.role === "admin" ? "/admin" : "/");
-    } else {
-      alert("Invalid credentials");
+    try {
+      const response = await fetch(`${BASE_URL}/api/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Store user data
+        localStorage.setItem("user", username);
+        localStorage.setItem("role", data.user.role);
+        
+        // Redirect based on role
+        navigate(data.user.role === "admin" ? "/admin" : "/");
+      } else {
+        setError(data.message || "Login failed");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      setError("Failed to connect to server");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -46,6 +50,7 @@ function Login() {
       <div className="form-container">
         <img src="/logo.png" alt="logo" className="logo" />
         <h1>Login</h1>
+        {error && <div className="error-message">{error}</div>}
         <form onSubmit={handleLogin}>
           <label>Username</label>
           <input
@@ -54,6 +59,8 @@ function Login() {
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             placeholder="Username"
+            disabled={isLoading}
+            required
           />
           <label>Password</label>
           <input
@@ -62,8 +69,12 @@ function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
+            disabled={isLoading}
+            required
           />
-          <button type="submit">Login</button>
+          <button type="submit" disabled={isLoading}>
+            {isLoading ? "Logging in..." : "Login"}
+          </button>
         </form>
       </div>
     </div>
