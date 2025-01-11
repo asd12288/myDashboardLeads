@@ -17,7 +17,7 @@ function Dashboard({ children }) {
         to="/campaign"
         className={({ isActive }) => (isActive ? "active btn " : "btn")}
       >
-        Your Campagins
+        Your Campaigns
       </NavLink>
 
       {role === "admin" && (
