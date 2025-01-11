@@ -19,7 +19,6 @@ function FullCampaignItem({
   imageUrl, // Added imageUrl prop
 }) {
   const [isHovered, setIsHovered] = useState(false);
-  console.log(imageUrl);
   const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com";
 
   return (
