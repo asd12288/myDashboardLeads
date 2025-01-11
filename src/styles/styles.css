@@ -264,7 +264,6 @@ main h2 {
 .total-spending {
   margin-top: 15px;
   text-align: right;
-  
 }
 
 /* Maintenance Table */
@@ -446,7 +445,6 @@ table {
 .admin-section table {
   width: 100%;
   border-collapse: collapse;
-
 }
 
 .admin-section th {
@@ -575,4 +573,191 @@ table {
 .loading-screen p {
   margin-top: 1rem;
   font-size: 1.2rem;
+}
+
+/* --------------------------------- */
+/*            RESPONSIVE CSS         */
+/* --------------------------------- */
+
+/* 
+  Example breakpoints:
+  - max-width: 992px  (small desktops / tablets in landscape)
+  - max-width: 768px  (tablets)
+  - max-width: 576px  (phones)
+*/
+
+/* For devices narrower than 992px (e.g., tablets in landscape) */
+@media (max-width: 992px) {
+  .container {
+    padding: 2rem;
+    height: auto; /* Allow height to adjust instead of 100vh */
+  }
+
+  .form-container {
+    width: 100%;
+    padding: 3rem;
+    box-sizing: border-box;
+  }
+
+  .dashboard {
+    width: 95%;
+    margin-bottom: 2rem;
+  }
+
+  .admin-section {
+    padding: 2rem;
+  }
+
+  /* Adjust table font-size, etc. */
+  .campaign-table th,
+  .campaign-table td,
+  .maintenance-table th,
+  .maintenance-table td {
+    font-size: 1.3rem;
+    padding: 8px;
+  }
+}
+
+/* For devices narrower than 768px (typical tablet portrait view) */
+@media (max-width: 768px) {
+  /* Make the form container full-width, stack elements */
+  .form-container {
+    width: 100%;
+    margin: 2rem auto;
+  }
+
+  /* Stack the budget summaries vertically */
+  .budget-container {
+    display: block; /* Instead of display: table */
+  }
+
+  .budget-summary,
+  .active-campaigns {
+    display: block;
+    width: 100%;
+    border-right: none; /* Remove border for stacked columns */
+    margin-bottom: 2rem;
+  }
+
+  /* Adjust heading sizes */
+  .header h1,
+  main h2 {
+    font-size: 2rem;
+  }
+
+  /* Adjust button sizes */
+  .header .buttons-header .btn {
+    margin-left: 1rem;
+    padding: 1rem 1.5rem;
+    font-size: 1.6rem;
+  }
+
+  /* Admin-section form layout */
+  .admin-section {
+    width: 100%;
+    margin-top: 2rem;
+    padding: 2rem 1rem;
+  }
+
+  .admin-section h2 {
+    font-size: 2rem;
+  }
+
+  /* Table text and spacing */
+  .admin-section table,
+  .campaign-table,
+  .maintenance-table {
+    font-size: 1.4rem;
+  }
+
+  .admin-section th,
+  .admin-section td {
+    padding: 8px;
+  }
+
+  /* Budget details layout */
+  .budget-details-container {
+    flex-direction: column;
+  }
+  .budget-details {
+    margin-bottom: 2rem;
+  }
+}
+
+/* For devices narrower than 576px (typical mobile phones) */
+@media (max-width: 576px) {
+  html {
+    font-size: 55%; /* Decrease the base font size a bit */
+  }
+
+  .form-container img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .form-container button {
+    font-size: 1.4rem;
+    padding: 0.8rem;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+    padding: 0.5rem;
+  }
+
+  .header .buttons-header .btn {
+    font-size: 1.4rem;
+    padding: 1rem;
+    margin-left: 0.5rem;
+  }
+
+  /* Stack header items */
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  main h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .filters select {
+    font-size: 1.4rem;
+    padding: 0.8rem;
+  }
+
+  /* Table cells */
+  .campaign-table th,
+  .campaign-table td,
+  .maintenance-table th,
+  .maintenance-table td,
+  .admin-section th,
+  .admin-section td {
+    font-size: 1.3rem;
+    padding: 5px;
+  }
+
+  /* Adjust spacing in admin-section */
+  .admin-section {
+    padding: 1rem;
+  }
+
+  /* Budget details text adjustments */
+  .budget-details h3 {
+    font-size: 1.8rem;
+  }
+
+  .budget-details li {
+    font-size: 1.4rem;
+  }
+
+  .remaining-budget {
+    font-size: 1.4rem;
+  }
+
+  .remaining-amount {
+    font-size: 1.8rem;
+  }
 }
