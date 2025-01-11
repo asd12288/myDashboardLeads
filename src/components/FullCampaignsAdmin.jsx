@@ -1,9 +1,8 @@
 // FullCampaignsAdmin.jsx
 import { useState, useEffect } from "react";
 import { moneyConvertor } from "../utilities/moneyConvertor";
-import { process } from "dotenv";
 
-const BASE_URL = process.env.REACT_APP_BASE_URL;
+const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com";
 
 // Note: we now track the 'File' separately from the existing URL
 const initialState = {
