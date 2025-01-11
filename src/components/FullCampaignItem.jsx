@@ -52,7 +52,6 @@ function FullCampaignItem({
             alt="Campaign Image"
             className={styles.previewImage}
           />
-          />
         </div>
       )}
     </>
