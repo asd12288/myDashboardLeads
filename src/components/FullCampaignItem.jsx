@@ -1,9 +1,7 @@
 import { useState } from "react";
 import styles from "./FullCampaignItem.module.css";
 import { moneyConvertor } from "../utilities/moneyConvertor";
-import dotenv from "dotenv";
 
-dotenv.config();
 
 function FullCampaignItem({
   campaignName,

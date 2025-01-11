@@ -1,10 +1,4 @@
-import { useState } from "react";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./Pages/Login";
 import RequireAuth from "./components/RequireAuth";
 import Admin from "./Pages/Admin";
@@ -13,29 +7,6 @@ import Campaigns from "./Pages/Campaigns";
 import Budget from "./Pages/Budget";
 
 function App() {
-  const [role, setRole] = useState(null);
-
-  function onLogin(username, password) {
-    if (username === "admin" && password === "admin") {
-      setRole("admin");
-    }
-    if (username === "user" && password === "user") {
-      setRole("user");
-    }
-    if (
-      username !== "admin" &&
-      username !== "user" &&
-      password !== "admin" &&
-      password !== "user"
-    ) {
-      alert("Invalid credentials");
-    }
-  }
-
-  function handleLogout() {
-    setRole(null);
-  }
-
   return (
     <Router>
       <Routes>
