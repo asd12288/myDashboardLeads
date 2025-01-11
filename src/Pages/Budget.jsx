@@ -14,6 +14,8 @@ function Budget() {
   const [campaignsDetails, setCampaignsDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com";
+
   const totalBudgetDaily = fullCampaigns.reduce(
     (sum, item) => Number(sum) + (Number(item.budgetDaily) || 0),
     0
@@ -37,18 +39,16 @@ function Budget() {
       try {
         setIsLoading(true);
         // Fetch budget data
-        const resBudget = await fetch("http://localhost:3001/api/budget");
+        const resBudget = await fetch(`${BASE_URL}/api/budget`);
         const budgetJson = await resBudget.json();
         setBudgetData(budgetJson);
         // Fetch full campaigns
-        const resFull = await fetch("http://localhost:3001/api/full-campaigns");
+        const resFull = await fetch(`${BASE_URL}/api/full-campaigns`);
         const fullJson = await resFull.json();
         setFullCampaigns(fullJson);
 
         // Fetch campaigns details
-        const resDetails = await fetch(
-          "http://localhost:3001/api/campaigns-details"
-        );
+        const resDetails = await fetch(`${BASE_URL}/api/campaigns-details`);
         const detailsJson = await resDetails.json();
         setCampaignsDetails(detailsJson);
         setIsLoading(false);

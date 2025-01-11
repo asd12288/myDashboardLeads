@@ -12,9 +12,13 @@ function Login() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/api/users`);
-        const data = await response.json();
-        setUsers(data);
+        const res = await fetch(`${BASE_URL}/api/users`, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        });
+        // ...rest of your login logic
       } catch (error) {
         console.error("Error fetching users:", error);
       }
