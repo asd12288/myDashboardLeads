@@ -1,0 +1,546 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+  --primary-color: #420072;
+  --secondary-color: #8555fe;
+  --danger-color: #ff0033;
+  --success-color: #00cc66;
+  --light-color: #f5f5f5;
+  --dark-color: #333;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: "Montserrat", serif;
+  font-size: 1.6rem;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-image: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+}
+
+.container {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  background-image: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+}
+
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  padding: 5rem;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.form-container img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 1rem;
+}
+
+.form-container form {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-container label {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.form-container input {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-container button {
+  padding: 1rem;
+  font-size: 1.6rem;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-container button:hover {
+  background-color: var(--secondary-color);
+}
+
+.dashboard {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 3rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem 0rem;
+}
+
+.header h1 {
+  font-size: 3rem;
+  color: #fff;
+}
+
+.admin-header {
+  color: #fff;
+  font-size: 2.5rem;
+}
+
+.header .buttons-header .btn {
+  background-color: var(--primary-color);
+  border: none;
+  padding: 1.5rem 2rem;
+  margin-left: 2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  transition: background-color 0.3s ease;
+  font-size: 2rem;
+}
+
+.header .buttons-header .btn.active {
+  font-weight: bold;
+  border: 3px solid #000;
+}
+
+main {
+  margin-top: 20px;
+}
+
+main h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.filters {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filters select {
+  padding: 10px;
+  font-size: 1.6rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.campaign-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.campaign-table thead {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.campaign-table th,
+.campaign-table td {
+  padding: 10px;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.campaign-table tbody tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+
+.campaign-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.status {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.status.learning {
+  background-color: #ffcc00;
+  color: #333;
+}
+
+.status.active {
+  background-color: #00cc66;
+  color: #fff;
+}
+
+.status.paused {
+  background-color: #ff0033;
+  color: #fff;
+}
+
+/* Budget Container as a Table */
+.budget-container {
+  display: table;
+  width: 100%;
+  background-color: white;
+  border-collapse: collapse;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.budget-container thead {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.budget-summary,
+.active-campaigns {
+  display: table-cell;
+  padding: 15px;
+  border-right: 1px solid #ddd;
+  vertical-align: top;
+}
+
+.budget-summary:last-child {
+  border-right: none;
+}
+
+.budget-summary table,
+.active-campaigns table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.active-campaigns thead {
+  background-color: var(--primary-color);
+}
+
+.budget-summary th,
+.budget-summary td,
+.active-campaigns th,
+.active-campaigns td {
+  text-align: left;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.active-campaigns h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+.total-spending {
+  margin-top: 15px;
+  text-align: right;
+  font-weight: bold;
+}
+
+/* Maintenance Table */
+.maintenance-container {
+  margin-top: 20px;
+}
+
+.maintenance-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.maintenance-table th,
+.maintenance-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.maintenance-table thead {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Container for budget details */
+.budget-details-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* General Budget Details Styling */
+.budget-details {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.budget-details h3 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.budget-details ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.budget-details li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.budget-details li:last-child {
+  border-bottom: none;
+}
+
+.budget-details span {
+  font-weight: bold;
+  color: #555;
+}
+
+/* Styling for Remaining Budget Section */
+.remaining-budget {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.remaining-budget {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.remaining-amount {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.logout {
+  color: #fff;
+  background-color: var(--primary-color);
+  padding: 1.5rem 2.5rem;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 2rem;
+  font-weight: bold;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border: none;
+  transition: all 0.2s ease;
+}
+.logout:hover {
+  background-color: var(--secondary-color);
+}
+
+.btn {
+  background-color: #fff;
+  color: #000;
+  padding: 1rem 2rem;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 8px;
+  font-weight: bold;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #f0f0f0;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 3px 4px;
+}
+
+.input-number {
+  width: 100%;
+}
+
+table {
+  background-color: #fff;
+}
+
+.admin-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+  background-color: #f5f5f5;
+  padding: 2rem 5rem;
+}
+
+.admin-section h2 {
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.admin-section input {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.admin-section select {
+  padding: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.delete {
+  background-color: #ff0033;
+  color: #fff;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete:hover {
+  background-color: #ff1a1a;
+}
+
+.edit {
+  background-color: #420072;
+  color: #fff;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit:hover {
+  background-color: #5a2d96;
+}
+
+.save {
+  background-color: #00cc66;
+  color: #fff;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save:hover {
+  background-color: #00e673;
+}
+
+.cancel {
+  background-color: #ff0033;
+  color: #fff;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cancel:hover {
+  background-color: #ff1a1a;
+}
+
+.add {
+  background-color: #420072;
+  color: #fff;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add:hover {
+  background-color: #5a2d96;
+}
+
+/* Full-page loading screen container */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Ensure it appears above other elements */
+  color: white;
+}
+
+/* Spinner animation */
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
+  border-top: 5px solid white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Keyframes for spinner animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Loading message */
+.loading-screen p {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}

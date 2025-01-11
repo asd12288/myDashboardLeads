@@ -1,0 +1,26 @@
+.campaignRow {
+  position: relative;
+  cursor: pointer;
+  overflow: visible;
+}
+
+.imagePopup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  padding: 5px;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.previewImage {
+  max-height: 600px;
+  max-height: 80vh;
+  width: auto;
+  height: auto;
+  border-radius: 4px;
+  object-fit: contain;
+}

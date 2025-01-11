@@ -1,0 +1,98 @@
+import { useEffect, useState } from "react";
+import Dashboard from "./Dashboard";
+import BudgetTable from "../components/BudgetTable";
+import ActiveCampaginTable from "../components/ActiveCampaginTable";
+import MaintenanceTable from "../components/MaintenanceTable";
+import BudgetOverview from "../components/BudgetOverview";
+import BudgetTotal from "../components/BudgetTotal";
+import LoadingScreen from "../components/LoadingScreen";
+
+function Budget() {
+  // 1) Local state for each data set
+  const [budgetData, setBudgetData] = useState([]);
+  const [fullCampaigns, setFullCampaigns] = useState([]);
+  const [campaignsDetails, setCampaignsDetails] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const totalBudgetDaily = fullCampaigns.reduce(
+    (sum, item) => Number(sum) + (Number(item.budgetDaily) || 0),
+    0
+  );
+  const totalBudget = budgetData.reduce(
+    (sum, item) => Number(sum) + Number(item.amount),
+    0
+  );
+  const daysReserve = Number(totalBudgetDaily) * 3;
+  const totalMaintenanceFee = campaignsDetails.reduce(
+    (sum, item) =>
+      Number(sum) + Number(item.costPerMonth) * Number(item.numAccounts),
+    0
+  );
+
+  const fee = (totalBudget * 5) / 100;
+
+  // 2) Fetch data on component mount
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setIsLoading(true);
+        // Fetch budget data
+        const resBudget = await fetch("http://localhost:3001/api/budget");
+        const budgetJson = await resBudget.json();
+        setBudgetData(budgetJson);
+        // Fetch full campaigns
+        const resFull = await fetch("http://localhost:3001/api/full-campaigns");
+        const fullJson = await resFull.json();
+        setFullCampaigns(fullJson);
+
+        // Fetch campaigns details
+        const resDetails = await fetch(
+          "http://localhost:3001/api/campaigns-details"
+        );
+        const detailsJson = await resDetails.json();
+        setCampaignsDetails(detailsJson);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    <Dashboard>
+      <h2>Budget</h2>
+      {isLoading ? (
+        <LoadingScreen />
+      ) : (
+        <>
+          <div className="budget-container">
+            <BudgetTable budgetData={budgetData} fee={fee} />
+            <ActiveCampaginTable fullCampaigns={fullCampaigns} />
+          </div>
+          <div className="maintenance-container">
+            <MaintenanceTable campaignsDetails={campaignsDetails} />
+          </div>
+
+          <div className="budget-details-container">
+            <BudgetOverview
+              totalMaintenanceFee={totalMaintenanceFee}
+              fee={fee}
+              daysReserve={daysReserve}
+            />
+            <BudgetTotal
+              totalBudget={totalBudget}
+              fee={fee}
+              totalMaintenanceFee={totalMaintenanceFee}
+            />
+          </div>
+        </>
+      )}
+    </Dashboard>
+  );
+}
+
+export default Budget;
