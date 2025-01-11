@@ -1,6 +1,9 @@
 import { useState } from "react";
 import styles from "./FullCampaignItem.module.css";
 import { moneyConvertor } from "../utilities/moneyConvertor";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 function FullCampaignItem({
   campaignName,
@@ -19,6 +22,7 @@ function FullCampaignItem({
   imageUrl, // Added imageUrl prop
 }) {
   const [isHovered, setIsHovered] = useState(false);
+
   const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com";
 
   return (
