@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Dashboard from "./Dashboard";
 import BudgetTable from "../components/smallTables/BudgetTable";
 import ActiveCampaginTable from "../components/ActiveCampaginTable";
@@ -8,6 +8,7 @@ import BudgetTotal from "../components/smallTables/BudgetTotal";
 import LoadingScreen from "../components/LoadingScreen";
 import LowBalance from "../components/LowBalance";
 import { moneyConvertor } from "../utilities/moneyConvertor";
+import { BaseUrlContext } from "../context/BaseUrlContext";
 
 function Budget() {
   // 1) Local state for each data set
@@ -18,8 +19,7 @@ function Budget() {
   const [lowBalance, setLowBalance] = useState(false);
 
   // BASE URL
-  // const BASE_URL = "http://localhost:30010";
-  const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com"; // For production
+  const BASE_URL = useContext(BaseUrlContext);
 
   // 2) Fetch data
   useEffect(() => {
@@ -77,12 +77,6 @@ function Budget() {
     }
   }, [daysReserve, totalBudgetDaily, remainingBudget]);
 
-  console.log("daysReserve", daysReserve);
-  console.log("totalBudgetDaily", totalBudgetDaily);
-  console.log("totalBudget", totalBudget);
-  console.log("fee", fee);
-  console.log("totalMaintenanceFee", totalMaintenanceFee);
-  console.log("remainingBudget", remainingBudget);
 
   return (
     <Dashboard>

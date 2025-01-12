@@ -5,28 +5,31 @@ import Admin from "./Pages/Admin";
 import RequireAdmin from "./components/RequireAdmin";
 import Campaigns from "./Pages/Campaigns";
 import Budget from "./Pages/Budget";
+import { BaseUrlProvider } from "./context/BaseUrlContext";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        {/* public route */}
-        <Route path="/login" element={<Login />} />
+    <BaseUrlProvider>
+      <Router>
+        <Routes>
+          {/* public route */}
+          <Route path="/login" element={<Login />} />
 
-        {/* private route */}
-        <Route element={<RequireAuth />}>
-          <Route path="/" element={<Budget />} />
-          <Route path="/campaign" element={<Campaigns />} />
-        </Route>
+          {/* private route */}
+          <Route element={<RequireAuth />}>
+            <Route path="/" element={<Budget />} />
+            <Route path="/campaign" element={<Campaigns />} />
+          </Route>
 
-        {/* admin Route */}
-        <Route element={<RequireAdmin />}>
-          <Route path="/admin" element={<Admin />} />
-        </Route>
-        {/* redirect to login page if not authenticated */}
-        <Route path="*" element={<Login />} />
-      </Routes>
-    </Router>
+          {/* admin Route */}
+          <Route element={<RequireAdmin />}>
+            <Route path="/admin" element={<Admin />} />
+          </Route>
+          {/* redirect to login page if not authenticated */}
+          <Route path="*" element={<Login />} />
+        </Routes>
+      </Router>
+    </BaseUrlProvider>
   );
 }
 

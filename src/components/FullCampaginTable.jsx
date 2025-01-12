@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import FullCampaignItem from "./FullCampaignItem";
 import { moneyConvertor } from "../utilities/moneyConvertor";
 import LoadingScreen from "./LoadingScreen";
-import styles from "./FullCampaignTable.module.css";
 import ReactDOM from "react-dom";
+import { BaseUrlContext } from "../context/BaseUrlContext";
 
 const columnExplanations = {
   campaignName: "The name of the campaign.",
@@ -25,11 +25,9 @@ function FullCampaignTable() {
   const [fullCampaigns, setFullCampaigns] = useState([]);
   const [filter, setFilter] = useState("All");
   const [isLoading, setIsLoading] = useState(false);
-  const [isHovered, setIsHovered] = useState(null);
   const [hoveredColumn, setHoveredColumn] = useState(null);
 
-  const BASE_URL = "http://localhost:30010";
-  // const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com" // For production
+  const BASE_URL = useContext(BaseUrlContext);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,7 +46,7 @@ function FullCampaignTable() {
     };
 
     fetchData();
-  }, []);
+  }, [BASE_URL]);
 
   function handleFilterChange(e) {
     setFilter(e.target.value);

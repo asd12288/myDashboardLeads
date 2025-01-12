@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { BaseUrlContext } from "../context/BaseUrlContext";
 
 function Login() {
   const navigate = useNavigate();
@@ -8,8 +9,7 @@ function Login() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  // const BASE_URL = "http://localhost:30010";
-  const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com"; // For production
+  const BASE_URL = useContext(BaseUrlContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();

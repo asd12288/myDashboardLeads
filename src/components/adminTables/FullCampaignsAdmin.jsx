@@ -1,14 +1,12 @@
 // FullCampaignsAdmin.jsx
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { moneyConvertor } from "../../utilities/moneyConvertor";
-
-// const BASE_URL = "http://localhost:30010";
-const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com"; // For production
+import { BaseUrlContext } from "../../context/BaseUrlContext";
 
 // Note: we now track the 'File' separately from the existing URL
 const initialState = {
   campaignName: "",
-  status: "",
+  status: "Active",
   budgetDaily: "",
   results: "",
   reaches: "",
@@ -27,6 +25,8 @@ const initialState = {
 };
 
 function FullCampaignsAdmin() {
+  const BASE_URL = useContext(BaseUrlContext);
+
   const [campaigns, setCampaigns] = useState([]);
   const [newCampaign, setNewCampaign] = useState(initialState);
   const [editCampaign, setEditCampaign] = useState(null);
@@ -75,7 +75,7 @@ function FullCampaignsAdmin() {
 
   // Add a new campaign (including the image file, if any)
   const addCampaign = async () => {
-    // Validate required fields
+    if (!newCampaign.campaignName) alert("Please enter a campaign name");
 
     try {
       setIsLoading(true);
@@ -295,8 +295,7 @@ function FullCampaignsAdmin() {
           onChange={handleNewCampaignChange}
         />
         <select
-          name="status"
-          placeholder="Status"
+          name="text"
           value={newCampaign.status}
           onChange={handleNewCampaignChange}
         >

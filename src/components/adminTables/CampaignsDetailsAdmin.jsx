@@ -1,10 +1,10 @@
 // components/CampaignsDetailsAdmin.jsx
-import { useEffect, useState } from "react";
-
-// const BASE_URL = "http://localhost:30010";
-  const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com" // For production
+import { useEffect, useState, useContext } from "react";
+import { BaseUrlContext } from "../../context/BaseUrlContext";
 
 function CampaignsDetailsAdmin() {
+  const BASE_URL = useContext(BaseUrlContext);
+
   const [details, setDetails] = useState([]);
   const [newDetail, setNewDetail] = useState({
     id: "",
@@ -116,10 +116,18 @@ function CampaignsDetailsAdmin() {
                 <td>{item.numAccounts}</td>
                 <td>{item.costPerMonth}</td>
                 <td>
-                  <button className="edit" onClick={() => startEdit({ ...item, id: rowId })}>
+                  <button
+                    className="edit"
+                    onClick={() => startEdit({ ...item, id: rowId })}
+                  >
                     Edit
                   </button>
-                  <button className="delete btn" onClick={() => deleteDetail(rowId)}>Delete</button>
+                  <button
+                    className="delete btn"
+                    onClick={() => deleteDetail(rowId)}
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             );

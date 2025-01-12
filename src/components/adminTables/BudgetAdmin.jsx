@@ -1,10 +1,12 @@
 // components/BudgetAdmin.jsx
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { BaseUrlContext } from "../../context/BaseUrlContext";
 
-// const BASE_URL = "http://localhost:30010";
-  const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com" // For production
-  
+
+
 function BudgetAdmin() {
+  const BASE_URL = useContext(BaseUrlContext);
+
   const [budgetData, setBudgetData] = useState([]);
   const [newBudgetItem, setNewBudgetItem] = useState({
     id: "",
