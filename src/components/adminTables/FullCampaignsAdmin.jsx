@@ -35,7 +35,7 @@ function FullCampaignsAdmin() {
 
   useEffect(() => {
     fetchCampaigns();
-  }, []);
+  }, );
 
   // Fetch all campaigns
   const fetchCampaigns = async () => {
