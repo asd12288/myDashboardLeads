@@ -97,7 +97,7 @@ function CampaignsDetailsAdmin() {
 
   return (
     <section className="admin-section">
-      <h2>Campaigns Details</h2>
+      <h2>Account Details</h2>
       <table border="1" cellPadding="5">
         <thead>
           <tr>

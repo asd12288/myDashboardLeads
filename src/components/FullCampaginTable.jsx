@@ -2,11 +2,31 @@ import { useState, useEffect } from "react";
 import FullCampaignItem from "./FullCampaignItem";
 import { moneyConvertor } from "../utilities/moneyConvertor";
 import LoadingScreen from "./LoadingScreen";
+import styles from "./FullCampaignTable.module.css";
+import ReactDOM from "react-dom";
+
+const columnExplanations = {
+  campaignName: "The name of the campaign.",
+  status: "The current status of the campaign.",
+  budgetDaily: "The daily budget allocated to the campaign.",
+  results: "The total results achieved by the campaign.",
+  reaches: "The number of unique people who saw the campaign.",
+  impressions: "The total number of times the campaign was viewed.",
+  linkClicks: "The number of clicks on the campaign's link.",
+  cpm: "Cost per 1,000 impressions.",
+  cpc: "Cost per click.",
+  ctr: "Click-through rate (percentage of clicks per impression).",
+  clicks: "Total number of clicks on the campaign.",
+  costPerResult: "The average cost per result achieved.",
+  amountSpent: "The total amount spent on the campaign.",
+};
 
 function FullCampaignTable() {
   const [fullCampaigns, setFullCampaigns] = useState([]);
   const [filter, setFilter] = useState("All");
   const [isLoading, setIsLoading] = useState(false);
+  const [isHovered, setIsHovered] = useState(null);
+  const [hoveredColumn, setHoveredColumn] = useState(null);
 
   // const BASE_URL = "http://localhost:30010";
   const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com" // For production
@@ -68,22 +88,34 @@ function FullCampaignTable() {
       <table className="campaign-table">
         <thead>
           <tr>
-            <th>Campaign Name</th>
-            <th>Status</th>
-            <th>Budget Daily</th>
-            <th>Results</th>
-            <th>Reaches</th>
-            <th>Impressions</th>
-            <th>Link Clicks</th>
-            <th>CPM</th>
-            <th>CPC</th>
-            <th>CTR</th>
-            <th>Clicks</th>
-            <th>Cost Per Result</th>
-            <th>Amount Spent</th>
-            <th>Image</th>
+            {Object.keys(columnExplanations).map((key) => (
+              <th
+                key={key}
+                onMouseEnter={(e) =>
+                  setHoveredColumn({
+                    key,
+                    position: {
+                      top: e.target.getBoundingClientRect().top - 10,
+                      left:
+                        e.target.getBoundingClientRect().left +
+                        e.target.offsetWidth / 2,
+                    },
+                  })
+                }
+                onMouseLeave={() => setHoveredColumn(null)}
+              >
+                {key === "campaignName"
+                  ? "Campaign Name"
+                  : key.charAt(0).toUpperCase() + key.slice(1)}
+              </th>
+            ))}
           </tr>
         </thead>
+        <Tooltip
+          text={hoveredColumn?.key && columnExplanations[hoveredColumn.key]}
+          position={hoveredColumn?.position || { top: 0, left: 0 }}
+          visible={!!hoveredColumn}
+        />
         <tbody>
           {filteredCampaigns.map((item) => (
             <FullCampaignItem
@@ -107,6 +139,23 @@ function FullCampaignTable() {
         </tbody>
       </table>
     </>
+  );
+}
+
+function Tooltip({ text, position, visible }) {
+  if (!visible) return null;
+
+  const tooltipStyle = {
+    top: `${position.top - 35}px `,
+    left: `${position.left}px`,
+  };
+
+  return ReactDOM.createPortal(
+    <div style={tooltipStyle} className={`tooltip ${visible ? "visible" : ""}`}>
+      {text}
+      <div className="tooltip-arrow" />
+    </div>,
+    document.body
   );
 }
 

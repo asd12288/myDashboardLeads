@@ -1,0 +1,32 @@
+.tooltip {
+  position: absolute;
+  background-color: rgba(50, 50, 50, 0.5); /* Slight transparency for a modern look */
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 14px; /* Readable font size */
+  line-height: 1.4;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  z-index: 1000;
+  pointer-events: none; /* Prevent interfering with hover */
+  transform: translate(-50%, -10px); /* Center horizontally and offset above */
+  transition: opacity 0.3s ease, transform 0.3s ease; /* Smooth fade and motion */
+  opacity: 0; /* Start hidden */
+}
+
+.tooltip.visible {
+  opacity: 1; /* Show when visible */
+  transform: translate(-50%, 0); /* Slight motion effect */
+}
+
+.tooltip-arrow {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 6px 0 6px; /* Triangle shape */
+  border-color: rgba(50, 50, 50, 0.9) transparent transparent transparent; /* Match tooltip background */
+  top: 100%; /* Place below the tooltip */
+  left: 50%;
+  transform: translateX(-50%);
+}

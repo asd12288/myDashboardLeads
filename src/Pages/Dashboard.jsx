@@ -1,5 +1,8 @@
 import Navbar from "../components/Navbar";
 import { NavLink } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faDollarSign, faBullhorn, faCogs  } from "@fortawesome/free-solid-svg-icons";
+
 
 function Dashboard({ children }) {
   const role = localStorage.getItem("role");
@@ -11,12 +14,14 @@ function Dashboard({ children }) {
         to="/"
         className={({ isActive }) => (isActive ? "btn active" : "btn")}
       >
+        <FontAwesomeIcon icon={faDollarSign} />
         Your Budget
       </NavLink>
       <NavLink
         to="/campaign"
         className={({ isActive }) => (isActive ? "active btn " : "btn")}
       >
+        <FontAwesomeIcon icon={faBullhorn} />
         Your Campaigns
       </NavLink>
 
@@ -25,6 +30,7 @@ function Dashboard({ children }) {
           to="/admin"
           className={({ isActive }) => (isActive ? "active btn " : "btn")}
         >
+          <FontAwesomeIcon icon={faCogs} />
           Admin
         </NavLink>
       )}

@@ -410,114 +410,159 @@ function FullCampaignsAdmin() {
       {isEditing && editCampaign && (
         <div>
           <h3>Edit Campaign (ID={editCampaign.id})</h3>
-          <input
-            type="text"
-            name="campaignName"
-            placeholder="Campaign Name"
-            value={editCampaign.campaignName}
-            onChange={handleEditCampaignChange}
-          />
-          <select
-            type="text"
-            name="status"
-            placeholder="Status"
-            value={editCampaign.status}
-            onChange={handleEditCampaignChange}
-          >
-            <option value="Learning">Learning</option>
-            <option value="Active">Active</option>
-            <option value="Paused">Paused</option>
-          </select>
-          <input
-            type="text"
-            name="budgetDaily"
-            placeholder="Daily Budget"
-            value={editCampaign.budgetDaily}
-            onChange={handleEditCampaignChange}
-          />
-          <input
-            type="number"
-            name="results"
-            placeholder="Results"
-            value={editCampaign.results}
-            onChange={handleEditCampaignChange}
-          />
-          <input
-            type="number"
-            name="reaches"
-            placeholder="Reaches"
-            value={editCampaign.reaches}
-            onChange={handleEditCampaignChange}
-          />
-          <input
-            type="number"
-            name="impressions"
-            placeholder="Impressions"
-            value={editCampaign.impressions}
-            onChange={handleEditCampaignChange}
-          />
-          <input
-            type="number"
-            name="linkClicks"
-            placeholder="Link Clicks"
-            value={editCampaign.linkClicks}
-            onChange={handleEditCampaignChange}
-          />
-          <input
-            type="number"
-            name="cpm"
-            placeholder="CPM"
-            value={editCampaign.cpm}
-            onChange={handleEditCampaignChange}
-          />
-          <input
-            type="number"
-            name="cpc"
-            placeholder="CPC"
-            value={editCampaign.cpc}
-            onChange={handleEditCampaignChange}
-          />
-          <input
-            type="number"
-            name="ctr"
-            placeholder="CTR %"
-            value={editCampaign.ctr}
-            onChange={handleEditCampaignChange}
-          />
-          <input
-            type="number"
-            name="clicks"
-            placeholder="Clicks"
-            value={editCampaign.clicks}
-            onChange={handleEditCampaignChange}
-          />
-          <input
-            type="number"
-            name="costPerResult"
-            placeholder="Cost Per Result"
-            value={editCampaign.costPerResult}
-            onChange={handleEditCampaignChange}
-          />
-          <input
-            type="number"
-            name="amountSpent"
-            placeholder="Amount Spent"
-            value={editCampaign.amountSpent}
-            onChange={handleEditCampaignChange}
-          />
-          <input
-            type="date"
-            name="startingDate"
-            placeholder="Starting Date"
-            value={editCampaign.startingDate}
-            onChange={handleEditCampaignChange}
-          />
-          <input
-            type="file"
-            name="image"
-            accept="image/*"
-            onChange={handleEditCampaignChange}
-          />
+          <label>
+            Campaign name
+            <input
+              type="text"
+              name="campaignName"
+              placeholder="Campaign Name"
+              value={editCampaign.campaignName}
+              onChange={handleEditCampaignChange}
+            />
+          </label>
+          <label>
+            Status
+            <select
+              type="text"
+              name="status"
+              placeholder="Status"
+              value={editCampaign.status}
+              onChange={handleEditCampaignChange}
+            >
+              <option value="Learning">Learning</option>
+              <option value="Active">Active</option>
+              <option value="Paused">Paused</option>
+            </select>
+          </label>
+          <label>
+            Budget Daily
+            <input
+              type="number"
+              name="budgetDaily"
+              placeholder="Daily Budget"
+              value={editCampaign.budgetDaily}
+              onChange={handleEditCampaignChange}
+            />
+          </label>
+          <label>
+            Results
+            <input
+              type="number"
+              name="results"
+              placeholder="Results"
+              value={editCampaign.results}
+              onChange={handleEditCampaignChange}
+            />
+          </label>
+          <label>
+            Reaches
+            <input
+              type="number"
+              name="reaches"
+              placeholder="Reaches"
+              value={editCampaign.reaches}
+              onChange={handleEditCampaignChange}
+            />
+          </label>
+          <label>
+            Impressions
+            <input
+              type="number"
+              name="impressions"
+              placeholder="Impressions"
+              value={editCampaign.impressions}
+              onChange={handleEditCampaignChange}
+            />
+          </label>
+          <label>
+            Link Clicks
+            <input
+              type="number"
+              name="linkClicks"
+              placeholder="Link Clicks"
+              value={editCampaign.linkClicks}
+              onChange={handleEditCampaignChange}
+            />
+          </label>
+          <label>
+            CPM
+            <input
+              type="number"
+              name="cpm"
+              placeholder="CPM"
+              value={editCampaign.cpm}
+              onChange={handleEditCampaignChange}
+            />
+          </label>
+          <label>
+            CPC
+            <input
+              type="number"
+              name="cpc"
+              placeholder="CPC"
+              value={editCampaign.cpc}
+              onChange={handleEditCampaignChange}
+            />
+          </label>
+          <label>
+            CTR
+            <input
+              type="number"
+              name="ctr"
+              placeholder="CTR %"
+              value={editCampaign.ctr}
+              onChange={handleEditCampaignChange}
+            />
+          </label>
+          <label>
+            Clicks
+            <input
+              type="number"
+              name="clicks"
+              placeholder="Clicks"
+              value={editCampaign.clicks}
+              onChange={handleEditCampaignChange}
+            />
+          </label>
+          <label>
+            Cost Per Result
+            <input
+              type="number"
+              name="costPerResult"
+              placeholder="Cost Per Result"
+              value={editCampaign.costPerResult}
+              onChange={handleEditCampaignChange}
+            />
+          </label>
+          <label>
+            Amount Spent
+            <input
+              type="number"
+              name="amountSpent"
+              placeholder="Amount Spent"
+              value={editCampaign.amountSpent}
+              onChange={handleEditCampaignChange}
+            />
+          </label>
+          <label>
+            Starting Date
+            <input
+              type="date"
+              name="startingDate"
+              placeholder="Starting Date"
+              value={editCampaign.startingDate}
+              onChange={handleEditCampaignChange}
+            />
+          </label>
+          <label>
+            Image
+            <input
+              type="file"
+              name="image"
+              accept="image/*"
+              onChange={handleEditCampaignChange}
+            />
+          </label>
           {/* 
             Show either a preview of the new file (if chosen) OR 
             the existing server URL if no new file is chosen 
