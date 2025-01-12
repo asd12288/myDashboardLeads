@@ -7,7 +7,7 @@ function MaintenanceTable({ campaignsDetails }) {
         <tr>
           <th>Maintenance Fee</th>
           <th>Active</th>
-          <th>Cost per Month</th>
+          <th>Cost</th>
           <th>Total Cost</th>
         </tr>
       </thead>
