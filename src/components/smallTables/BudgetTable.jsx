@@ -26,9 +26,7 @@ function BudgetTable({ budgetData, fee }) {
             </td>
           </tr>
           <tr>
-            <td className="fee" colSpan="2">
-              Fee crypto: {moneyConvertor(fee)}
-            </td>
+           
           </tr>
         </tbody>
       </table>

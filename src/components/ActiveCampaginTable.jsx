@@ -18,8 +18,8 @@ function ActiveCampaginTable({ fullCampaigns }) {
         <thead>
           <tr>
             <th>Campaign Name</th>
+            <th>Current Daily Budget</th>
             <th>Total Spent</th>
-            <th>Curreny Daily Budget</th>
             <th>Starting Date</th>
           </tr>
         </thead>

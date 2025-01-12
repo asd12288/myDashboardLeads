@@ -1,9 +1,14 @@
 import { moneyConvertor } from "../../utilities/moneyConvertor";
 
-function BudgetOverview({ totalMaintenanceFee, fee, daysReserve }) {
+function BudgetOverview({
+  totalMaintenanceFee,
+  fee,
+  totalSpent,
+  totalExpenses,
+}) {
   return (
     <div className="budget-details">
-      <h3>Budget Overview</h3>
+      <h3>Expenses Overview</h3>
       <ul>
         <li>
           <span>Maintenance fee:</span> {moneyConvertor(totalMaintenanceFee)}
@@ -12,7 +17,11 @@ function BudgetOverview({ totalMaintenanceFee, fee, daysReserve }) {
           <span>Exchange fees:</span> {moneyConvertor(fee)}
         </li>
         <li>
-          <span>3 days reserve:</span> {moneyConvertor(daysReserve)}
+          <span>All campaigns:</span> {moneyConvertor(totalSpent)}
+        </li>
+        <li>
+          <span>Total Expenses: </span>
+          {moneyConvertor(totalExpenses)}
         </li>
       </ul>
     </div>

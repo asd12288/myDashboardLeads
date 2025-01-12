@@ -50,12 +50,12 @@ function Budget() {
   }, [BASE_URL]);
 
   // 3) Calculate derived values
-  const totalBudgetDaily = fullCampaigns.reduce(
+  const totalExpensesDaily = fullCampaigns.reduce(
     (sum, item) => Number(sum) + (Number(item.budgetDaily) || 0),
     0
   );
 
-  const totalBudgetSpent = fullCampaigns.reduce(
+  const TotalCampaignsExpenses = fullCampaigns.reduce(
     (sum, item) => Number(sum) + Number(item.amountSpent),
     0
   );
@@ -63,7 +63,8 @@ function Budget() {
     (sum, item) => Number(sum) + Number(item.amount),
     0
   );
-  const daysReserve = totalBudgetDaily * 3;
+  const daysReserve = totalExpensesDaily * 3;
+
   const totalMaintenanceFee = campaignsDetails.reduce(
     (sum, item) => sum + item.costPerMonth * item.numAccounts,
     0
@@ -72,16 +73,17 @@ function Budget() {
   const fee = (totalBudget * 5) / 100;
 
   const remainingBudget =
-    totalBudget - fee - totalMaintenanceFee - totalBudgetSpent;
+    totalBudget - fee - totalMaintenanceFee - TotalCampaignsExpenses;
 
+  const totalExpenses = totalBudget - remainingBudget;
   // 4) Only update lowBalance state if values change
   useEffect(() => {
-    if (daysReserve + totalBudgetDaily > remainingBudget) {
+    if (daysReserve + totalExpensesDaily > remainingBudget) {
       setLowBalance(true);
     } else {
       setLowBalance(false);
     }
-  }, [daysReserve, totalBudgetDaily, remainingBudget]);
+  }, [daysReserve, totalExpensesDaily, remainingBudget]);
 
   return (
     <Dashboard>
@@ -107,8 +109,13 @@ function Budget() {
               totalMaintenanceFee={totalMaintenanceFee}
               fee={fee}
               daysReserve={daysReserve}
+              totalSpent={TotalCampaignsExpenses}
+              totalExpenses={totalExpenses}
             />
-            <BudgetTotal remainingBudget={remainingBudget} />
+            <BudgetTotal
+              remainingBudget={remainingBudget}
+              daysReserve={daysReserve}
+            />
           </div>
         </>
       )}
