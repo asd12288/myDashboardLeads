@@ -103,7 +103,7 @@ function CampaignsDetailsAdmin() {
           <tr>
             <th>Type</th>
             <th>#Accounts</th>
-            <th>Cost/Month</th>
+            <th>Cost</th>
             <th>Actions</th>
           </tr>
         </thead>
