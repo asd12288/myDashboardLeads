@@ -37,7 +37,7 @@ function FullCampaignItem({
         <td>{linkClicks}</td>
         <td>{cpm}</td>
         <td>{cpc}</td>
-        <td>{ctr}%</td>
+        <td>{ctr.toFixed(2)}%</td>
         <td>{clicks}</td>
         <td>{costPerResult}</td>
         <td>{moneyConvertor(amountSpent)}</td>
