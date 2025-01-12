@@ -8,7 +8,10 @@ function BudgetOverview({
 }) {
   return (
     <div className="budget-details">
-      <h3>Expenses Overview</h3>
+      <div className="titles">
+        <h3>Expenses Overview</h3>
+        <p>For Date: {new Date().toLocaleDateString()}</p>
+      </div>
       <ul>
         <li>
           <span>Maintenance fee:</span> {moneyConvertor(totalMaintenanceFee)}

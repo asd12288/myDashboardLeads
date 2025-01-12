@@ -650,13 +650,12 @@ table {
   .campaign-table td,
   .maintenance-table th,
   .maintenance-table td,
-  .budget-summary ,
+  .budget-summary,
   .budget-summary th,
   .active-campaigns th,
   .active-campaigns td {
     font-size: 1.3rem;
     text-align: center;
-
   }
 }
 
@@ -666,7 +665,6 @@ table {
   .form-container {
     width: 60%;
     margin: 2rem auto;
-
   }
 
   /* Stack the budget summaries vertically */
@@ -676,7 +674,6 @@ table {
     justify-content: center;
     align-items: center; /* Instead of display: table */
     text-align: center;
-
   }
 
   .budget-summary,
@@ -689,7 +686,6 @@ table {
     margin-bottom: 2rem;
     justify-content: center;
     text-align: center;
-
   }
 
   /* Adjust heading sizes */
@@ -901,4 +897,9 @@ th:hover .tooltip {
 
 .reserve p {
   margin: 1.5rem;
+}
+
+.titles {
+  display: flex;
+  justify-content: space-between;
 }
