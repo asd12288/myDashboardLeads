@@ -860,3 +860,15 @@ th:hover .tooltip {
   left: 50%;
   transform: translateX(-50%);
 }
+
+.low-balance {
+  background-color: #ffadad;
+  padding: 1rem 1rem;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  text-align: center;
+  margin: 2rem 0;
+  color: #cf022b;
+  font-weight: bold;
+  font-size: 1.4rem;
+}

@@ -28,8 +28,8 @@ function FullCampaignTable() {
   const [isHovered, setIsHovered] = useState(null);
   const [hoveredColumn, setHoveredColumn] = useState(null);
 
-  // const BASE_URL = "http://localhost:30010";
-  const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com" // For production
+  const BASE_URL = "http://localhost:30010";
+  // const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com" // For production
 
   useEffect(() => {
     const fetchData = async () => {

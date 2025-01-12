@@ -1,11 +1,11 @@
 import { moneyConvertor } from "../../utilities/moneyConvertor";
 
-function BudgetTotal({ totalBudget, fee, totalMaintenanceFee }) {
+function BudgetTotal({ remainingBudget}) {
   return (
     <div className="budget-details remaining-budget">
       <h3>Remaining Budget</h3>
       <p className="remaining-amount">
-        {moneyConvertor(totalBudget - fee - totalMaintenanceFee)}
+        {moneyConvertor(remainingBudget)}
       </p>
     </div>
   );

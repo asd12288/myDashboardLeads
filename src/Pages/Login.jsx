@@ -8,8 +8,8 @@ function Login() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  // const BASE_URL = "http://localhost:30010";
-  const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com"; // For production
+  const BASE_URL = "http://localhost:30010";
+  // const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com"; // For production
 
   const handleLogin = async (e) => {
     e.preventDefault();
