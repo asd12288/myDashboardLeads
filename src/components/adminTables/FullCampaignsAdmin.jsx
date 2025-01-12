@@ -2,8 +2,8 @@
 import { useState, useEffect } from "react";
 import { moneyConvertor } from "../../utilities/moneyConvertor";
 
-const BASE_URL = "http://localhost:30010";
-// const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com"; // For production
+// const BASE_URL = "http://localhost:30010";
+const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com"; // For production
 
 // Note: we now track the 'File' separately from the existing URL
 const initialState = {

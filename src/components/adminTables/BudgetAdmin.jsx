@@ -1,8 +1,8 @@
 // components/BudgetAdmin.jsx
 import { useEffect, useState } from "react";
 
-const BASE_URL = "http://localhost:30010";
-  // const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com" // For production
+// const BASE_URL = "http://localhost:30010";
+  const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com" // For production
   
 function BudgetAdmin() {
   const [budgetData, setBudgetData] = useState([]);

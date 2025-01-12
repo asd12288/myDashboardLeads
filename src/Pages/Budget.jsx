@@ -18,7 +18,8 @@ function Budget() {
   const [lowBalance, setLowBalance] = useState(false);
 
   // BASE URL
-  const BASE_URL = "http://localhost:30010";
+  // const BASE_URL = "http://localhost:30010";
+  const BASE_URL = "https://mydashleads-70713a400aca.herokuapp.com"; // For production
 
   // 2) Fetch data
   useEffect(() => {
