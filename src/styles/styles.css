@@ -213,6 +213,7 @@ main h2 {
 
 /* Budget Container as a Table */
 .budget-container {
+
   display: table;
   width: 100%;
   background-color: white;
@@ -872,3 +873,4 @@ th:hover .tooltip {
   font-weight: bold;
   font-size: 1.4rem;
 }
+

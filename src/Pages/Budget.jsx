@@ -54,6 +54,11 @@ function Budget() {
     (sum, item) => Number(sum) + (Number(item.budgetDaily) || 0),
     0
   );
+
+  const totalBudgetSpent = fullCampaigns.reduce(
+    (sum, item) => Number(sum) + Number(item.amountSpent),
+    0
+  );
   const totalBudget = budgetData.reduce(
     (sum, item) => Number(sum) + Number(item.amount),
     0
@@ -66,7 +71,8 @@ function Budget() {
 
   const fee = (totalBudget * 5) / 100;
 
-  const remainingBudget = totalBudget - fee - totalMaintenanceFee;
+  const remainingBudget =
+    totalBudget - fee - totalMaintenanceFee - totalBudgetSpent;
 
   // 4) Only update lowBalance state if values change
   useEffect(() => {
@@ -77,10 +83,10 @@ function Budget() {
     }
   }, [daysReserve, totalBudgetDaily, remainingBudget]);
 
-
   return (
     <Dashboard>
       <h2>Budget</h2>
+
       {lowBalance && (
         <LowBalance remainingBudget={moneyConvertor(remainingBudget)} />
       )}
