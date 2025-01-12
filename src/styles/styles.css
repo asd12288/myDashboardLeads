@@ -324,6 +324,11 @@ main h2 {
   color: #333;
 }
 
+.budget-details p {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
 .budget-details ul {
   list-style: none;
   padding: 0;
