@@ -115,25 +115,34 @@ function FullCampaignTable() {
           visible={!!hoveredColumn}
         />
         <tbody>
-          {filteredCampaigns.map((item) => (
-            <FullCampaignItem
-              key={item.id}
-              campaignName={item.campaignName}
-              status={item.status}
-              dailyBudget={item.budgetDaily}
-              results={item.results}
-              reaches={item.reaches}
-              impressions={item.impressions}
-              linkClicks={item.linkClicks}
-              cpm={moneyConvertor(item.cpm)}
-              cpc={moneyConvertor(item.cpc)}
-              ctr={item.ctr}
-              clicks={item.clicks}
-              costPerResult={moneyConvertor(item.costPerResult)}
-              amountSpent={item.amountSpent}
-              imageUrl={item.imageUrl}
-            />
-          ))}
+          {filteredCampaigns.map((item) => {
+            const ctr = ((item.linkClicks / item.impressions) * 100).toFixed(2); // Calculate CTR
+            const cpm = ((item.amountSpent / item.impressions) * 1000).toFixed(
+              2
+            ); // Calculate CPM
+            const cpc = (item.amountSpent / item.clicks).toFixed(2); // Calculate CPC
+            const costPerResult = (item.amountSpent / item.results).toFixed(2); // Cost Per Result
+
+            return (
+              <FullCampaignItem
+                key={item.id}
+                campaignName={item.campaignName}
+                status={item.status}
+                dailyBudget={item.budgetDaily}
+                results={item.results}
+                reaches={item.reaches}
+                impressions={item.impressions}
+                linkClicks={item.linkClicks}
+                cpm={moneyConvertor(cpm)}
+                cpc={moneyConvertor(cpc)}
+                ctr={ctr}
+                clicks={item.clicks}
+                costPerResult={moneyConvertor(costPerResult)}
+                amountSpent={item.amountSpent}
+                imageUrl={item.imageUrl}
+              />
+            );
+          })}
         </tbody>
       </table>
     </>

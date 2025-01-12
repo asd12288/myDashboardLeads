@@ -3,7 +3,6 @@ import { useState, useEffect, useContext } from "react";
 import { moneyConvertor } from "../../utilities/moneyConvertor";
 import { BaseUrlContext } from "../../context/BaseUrlContext";
 
-// Note: we now track the 'File' separately from the existing URL
 const initialState = {
   campaignName: "",
   status: "Learning",
@@ -12,16 +11,18 @@ const initialState = {
   reaches: "",
   impressions: "",
   linkClicks: "",
-  cpm: "",
-  cpc: "",
-  ctr: "",
   clicks: "",
   costPerResult: "",
-  amountSpent: "",
+  // The following four will be calculated automatically (no manual input).
+  amountSpent: 0,
+  cpm: 0,
+  cpc: 0,
+  ctr: 0,
+
   startingDate: "",
-  imageFile: null, // <--- The actual File object
-  imageUrl: null, // <--- The existing image path from server (if any)
-  imagePreview: null, // <--- Local preview (string URL)
+  imageFile: null,
+  imageUrl: null,
+  imagePreview: null,
 };
 
 function FullCampaignsAdmin() {
@@ -35,7 +36,8 @@ function FullCampaignsAdmin() {
 
   useEffect(() => {
     fetchCampaigns();
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   // Fetch all campaigns
   const fetchCampaigns = async () => {
@@ -57,46 +59,74 @@ function FullCampaignsAdmin() {
     }
   };
 
-  // Handle input changes for NEW campaign
+  // Utility to recalculate cpm/cpc/ctr/amountSpent
+  const recalcCampaignMetrics = (campaign) => {
+    const results = parseFloat(campaign.results) || 0;
+    const costPerResult = parseFloat(campaign.costPerResult) || 0;
+    const impressions = parseFloat(campaign.impressions) || 0;
+    const linkClicks = parseFloat(campaign.linkClicks) || 0;
+    const clicks = parseFloat(campaign.clicks) || 0;
+
+    const amountSpent = results * costPerResult;
+    const cpm = impressions > 0 ? (amountSpent / impressions) * 1000 : 0;
+    const cpc = clicks > 0 ? amountSpent / clicks : 0;
+    const ctr = impressions > 0 ? (linkClicks / impressions) * 100 : 0;
+
+    return {
+      ...campaign,
+      amountSpent,
+      cpm,
+      cpc,
+      ctr,
+    };
+  };
+
+  // Handle changes for NEW campaign
   const handleNewCampaignChange = (e) => {
     const { name, value, files } = e.target;
-
     if (name === "image" && files?.[0]) {
       const file = files[0];
       setNewCampaign((prev) => ({
         ...prev,
-        imageFile: file, // store the actual File
-        imagePreview: URL.createObjectURL(file), // local preview
+        imageFile: file,
+        imagePreview: URL.createObjectURL(file),
       }));
     } else {
-      setNewCampaign((prev) => ({ ...prev, [name]: value }));
+      setNewCampaign((prev) => {
+        const updated = { ...prev, [name]: value };
+        return recalcCampaignMetrics(updated);
+      });
     }
   };
 
-  // Add a new campaign (including the image file, if any)
+  // Add a new campaign
   const addCampaign = async () => {
-    if (!newCampaign.campaignName) alert("Please enter a campaign name");
+    if (!newCampaign.campaignName) {
+      alert("Please enter a campaign name");
+      return;
+    }
 
     try {
       setIsLoading(true);
+
+      // Recalculate before sending, just to ensure up-to-date
+      const finalData = recalcCampaignMetrics(newCampaign);
+
       const formData = new FormData();
-
-      // Append all fields except the ones that are not meant to be directly sent
-      Object.keys(newCampaign).forEach((key) => {
+      // Append all except local-only keys
+      Object.keys(finalData).forEach((key) => {
         if (["imagePreview", "imageFile"].includes(key)) return;
-        formData.append(key, newCampaign[key]);
+        formData.append(key, finalData[key]);
       });
-
-      // Append the file if it exists
-      if (newCampaign.imageFile) {
-        formData.append("image", newCampaign.imageFile);
+      // Image file if present
+      if (finalData.imageFile) {
+        formData.append("image", finalData.imageFile);
       }
 
       const response = await fetch(`${BASE_URL}/api/full-campaigns`, {
         method: "POST",
         headers: {
           role: localStorage.getItem("role"),
-          // Do NOT set 'Content-Type' header here because we're sending FormData
         },
         body: formData,
       });
@@ -117,15 +147,11 @@ function FullCampaignsAdmin() {
     }
   };
 
-  // Prepare for editing: copy existing data into 'editCampaign' state
+  // Start editing
   const startEdit = (campaign) => {
     setEditCampaign({
       ...campaign,
-
-      // The server's stored image path
       imageUrl: campaign.imageUrl || null,
-
-      // Assume no new file chosen yet
       imageFile: null,
       imagePreview: null,
     });
@@ -137,38 +163,42 @@ function FullCampaignsAdmin() {
     setIsEditing(false);
   };
 
-  // Handle input changes for EDIT campaign
+  // Handle changes for EDIT campaign
   const handleEditCampaignChange = (e) => {
     const { name, value, files } = e.target;
-
     if (name === "image" && files?.[0]) {
       const file = files[0];
       setEditCampaign((prev) => ({
         ...prev,
-        imageFile: file, // actual File
-        imagePreview: URL.createObjectURL(file), // local preview
+        imageFile: file,
+        imagePreview: URL.createObjectURL(file),
       }));
     } else {
-      setEditCampaign((prev) => ({ ...prev, [name]: value }));
+      setEditCampaign((prev) => {
+        const updated = { ...prev, [name]: value };
+        return recalcCampaignMetrics(updated);
+      });
     }
   };
 
-  // Save changes to the edited campaign
+  // Save edited campaign
   const saveEdit = async () => {
     if (!editCampaign) return;
     try {
       setIsLoading(true);
+
+      // Recalculate to ensure everything is up-to-date
+      const finalData = recalcCampaignMetrics(editCampaign);
+
       const formData = new FormData();
-
-      // Append all fields except local-only properties
-      Object.keys(editCampaign).forEach((key) => {
+      // Append all except local-only properties
+      Object.keys(finalData).forEach((key) => {
         if (["imagePreview", "imageFile", "id"].includes(key)) return;
-        formData.append(key, editCampaign[key]);
+        formData.append(key, finalData[key]);
       });
-
-      // If user chose a new file, append it
-      if (editCampaign.imageFile) {
-        formData.append("image", editCampaign.imageFile);
+      // If new file
+      if (finalData.imageFile) {
+        formData.append("image", finalData.imageFile);
       }
 
       const response = await fetch(
@@ -200,9 +230,7 @@ function FullCampaignsAdmin() {
 
   // Delete campaign
   const deleteCampaign = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this campaign?"))
-      return;
-
+    if (!window.confirm("Are you sure you want to delete this campaign?")) return;
     try {
       const response = await fetch(`${BASE_URL}/api/full-campaigns/${id}`, {
         method: "DELETE",
@@ -240,6 +268,7 @@ function FullCampaignsAdmin() {
             <th>Reaches</th>
             <th>Impressions</th>
             <th>Link Clicks</th>
+            {/* Automated fields */}
             <th>CPM</th>
             <th>CPC</th>
             <th>CTR</th>
@@ -259,21 +288,24 @@ function FullCampaignsAdmin() {
               <td>{campaign.reaches}</td>
               <td>{campaign.impressions}</td>
               <td>{campaign.linkClicks}</td>
+              {/* 
+                We expect the backend to store cpm/cpc/ctr/amountSpent 
+                or recalc them on retrieval. 
+                Or if the backend does not store them, 
+                we can show them from the state as well.
+              */}
               <td>{moneyConvertor(campaign.cpm)}</td>
               <td>{moneyConvertor(campaign.cpc)}</td>
-              <td>{campaign.ctr}</td>
+              <td>{Number(campaign.ctr ?? 0).toFixed(2)}%</td>
               <td>{campaign.clicks}</td>
               <td>{moneyConvertor(campaign.costPerResult)}</td>
               <td>{moneyConvertor(campaign.amountSpent)}</td>
               <td>
-                <button
-                  className="edit btn"
-                  onClick={() => startEdit(campaign)}
-                >
+                <button className="edit btn" onClick={() => startEdit(campaign)}>
                   Edit
                 </button>
                 <button
-                  className="delete btn "
+                  className="delete btn"
                   onClick={() => deleteCampaign(campaign.id)}
                 >
                   Delete
@@ -294,7 +326,11 @@ function FullCampaignsAdmin() {
           value={newCampaign.campaignName}
           onChange={handleNewCampaignChange}
         />
-        <select name="text" onChange={handleNewCampaignChange}>
+        <select
+          name="status"
+          value={newCampaign.status}
+          onChange={handleNewCampaignChange}
+        >
           <option value="Learning">Learning</option>
           <option value="Active">Active</option>
           <option value="Paused">Paused</option>
@@ -336,27 +372,6 @@ function FullCampaignsAdmin() {
         />
         <input
           type="number"
-          name="cpm"
-          placeholder="CPM"
-          value={newCampaign.cpm}
-          onChange={handleNewCampaignChange}
-        />
-        <input
-          type="number"
-          name="cpc"
-          placeholder="CPC"
-          value={newCampaign.cpc}
-          onChange={handleNewCampaignChange}
-        />
-        <input
-          type="number"
-          name="ctr"
-          placeholder="CTR %"
-          value={newCampaign.ctr}
-          onChange={handleNewCampaignChange}
-        />
-        <input
-          type="number"
           name="clicks"
           placeholder="Clicks"
           value={newCampaign.clicks}
@@ -369,13 +384,8 @@ function FullCampaignsAdmin() {
           value={newCampaign.costPerResult}
           onChange={handleNewCampaignChange}
         />
-        <input
-          type="number"
-          name="amountSpent"
-          placeholder="Amount Spent"
-          value={newCampaign.results * newCampaign.costPerResult}
-          onChange={handleNewCampaignChange}
-        />
+        {/* Notice we removed cpm, cpc, ctr, and amountSpent inputs */}
+
         <input
           type="date"
           name="startingDate"
@@ -396,7 +406,7 @@ function FullCampaignsAdmin() {
             style={{ maxWidth: "200px", display: "block", marginTop: "10px" }}
           />
         )}
-        <button className="add btn " onClick={addCampaign}>
+        <button className="add btn" onClick={addCampaign}>
           Add Campaign
         </button>
       </div>
@@ -406,7 +416,7 @@ function FullCampaignsAdmin() {
         <div>
           <h3>Edit Campaign (ID={editCampaign.id})</h3>
           <label>
-            Campaign name
+            Campaign Name
             <input
               type="text"
               name="campaignName"
@@ -418,9 +428,7 @@ function FullCampaignsAdmin() {
           <label>
             Status
             <select
-              type="text"
               name="status"
-              placeholder="Status"
               value={editCampaign.status}
               onChange={handleEditCampaignChange}
             >
@@ -480,36 +488,6 @@ function FullCampaignsAdmin() {
             />
           </label>
           <label>
-            CPM
-            <input
-              type="number"
-              name="cpm"
-              placeholder="CPM"
-              value={editCampaign.cpm}
-              onChange={handleEditCampaignChange}
-            />
-          </label>
-          <label>
-            CPC
-            <input
-              type="number"
-              name="cpc"
-              placeholder="CPC"
-              value={editCampaign.cpc}
-              onChange={handleEditCampaignChange}
-            />
-          </label>
-          <label>
-            CTR
-            <input
-              type="number"
-              name="ctr"
-              placeholder="CTR %"
-              value={editCampaign.ctr}
-              onChange={handleEditCampaignChange}
-            />
-          </label>
-          <label>
             Clicks
             <input
               type="number"
@@ -529,16 +507,7 @@ function FullCampaignsAdmin() {
               onChange={handleEditCampaignChange}
             />
           </label>
-          <label>
-            Amount Spent
-            <input
-              type="number"
-              name="amountSpent"
-              placeholder="Amount Spent"
-              value={editCampaign.amountSpent}
-              onChange={handleEditCampaignChange}
-            />
-          </label>
+          {/* cpm, cpc, ctr, amountSpent are automatically recalculated */}
           <label>
             Starting Date
             <input
@@ -558,10 +527,6 @@ function FullCampaignsAdmin() {
               onChange={handleEditCampaignChange}
             />
           </label>
-          {/* 
-            Show either a preview of the new file (if chosen) OR 
-            the existing server URL if no new file is chosen 
-          */}
           {(editCampaign.imagePreview || editCampaign.imageUrl) && (
             <img
               src={editCampaign.imagePreview || editCampaign.imageUrl}

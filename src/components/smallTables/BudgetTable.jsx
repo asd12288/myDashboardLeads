@@ -12,7 +12,7 @@ function BudgetTable({ budgetData, fee }) {
       <table>
         <thead>
           <tr>
-            <th>Amount</th>
+            <th>Latest Deposits</th>
             <th>Date</th>
           </tr>
         </thead>
