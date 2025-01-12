@@ -6,7 +6,7 @@ import { BaseUrlContext } from "../../context/BaseUrlContext";
 // Note: we now track the 'File' separately from the existing URL
 const initialState = {
   campaignName: "",
-  status: "Active",
+  status: "Learning",
   budgetDaily: "",
   results: "",
   reaches: "",
@@ -35,7 +35,7 @@ function FullCampaignsAdmin() {
 
   useEffect(() => {
     fetchCampaigns();
-  }, );
+  });
 
   // Fetch all campaigns
   const fetchCampaigns = async () => {
@@ -294,11 +294,7 @@ function FullCampaignsAdmin() {
           value={newCampaign.campaignName}
           onChange={handleNewCampaignChange}
         />
-        <select
-          name="text"
-          value={newCampaign.status}
-          onChange={handleNewCampaignChange}
-        >
+        <select name="text" onChange={handleNewCampaignChange}>
           <option value="Learning">Learning</option>
           <option value="Active">Active</option>
           <option value="Paused">Paused</option>
@@ -377,7 +373,7 @@ function FullCampaignsAdmin() {
           type="number"
           name="amountSpent"
           placeholder="Amount Spent"
-          value={newCampaign.amountSpent}
+          value={newCampaign.results * newCampaign.costPerResult}
           onChange={handleNewCampaignChange}
         />
         <input

@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 function ActiveCampaginTable({ fullCampaigns }) {
   const filtredFullCampaings = fullCampaigns.filter(
-    (item) => item.status === "Active"
+    (item) => item.status === "Active" || item.status === "Learning"
   );
 
   const totalBudgetDaily = filtredFullCampaings.reduce(
