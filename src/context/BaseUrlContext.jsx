@@ -6,7 +6,7 @@ const PROD_URL = "https://mydashleads-70713a400aca.herokuapp.com"; // For produc
 export const BaseUrlContext = createContext();
 
 export function BaseUrlProvider({ children }) {
-  const baseUrl = DEV_BASE_URL;
+  const baseUrl = PROD_URL;
   return (
     <BaseUrlContext.Provider value={baseUrl}>
       {children}
