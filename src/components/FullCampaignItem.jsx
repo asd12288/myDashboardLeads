@@ -1,7 +1,7 @@
-import { useContext, useState } from "react";
-import styles from "./FullCampaignItem.module.css";
-import { moneyConvertor } from "../utilities/moneyConvertor";
-import { BaseUrlContext } from "../context/BaseUrlContext";
+import { useContext, useState } from 'react';
+import styles from './FullCampaignItem.module.css';
+import { moneyConvertor } from '../utilities/moneyConvertor';
+import { BaseUrlContext } from '../context/BaseUrlContext';
 
 function FullCampaignItem({
   campaignName,
@@ -37,7 +37,7 @@ function FullCampaignItem({
         <td>{linkClicks}</td>
         <td>{cpm}</td>
         <td>{cpc}</td>
-        <td>{ctr.toFixed(2)}%</td>
+        <td>{Number(ctr ?? 0).toFixed(2)}%</td>
         <td>{clicks}</td>
         <td>{costPerResult}</td>
         <td>{moneyConvertor(amountSpent)}</td>
