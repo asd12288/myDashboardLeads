@@ -21,8 +21,7 @@ function Navbar() {
         !
       </h1>
       <p className='white'>
-        The data refrash every 8 Hours, latest update:{' '}
-        {new Date.now().toLocaleString()}
+        The data refrash every 8 Hours
       </p>
 
       <div className="header-right">
