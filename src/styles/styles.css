@@ -908,3 +908,7 @@ th:hover .tooltip {
   display: flex;
   justify-content: space-between;
 }
+
+.white {
+  color: white;
+}

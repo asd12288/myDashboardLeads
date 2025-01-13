@@ -20,9 +20,9 @@ function Navbar() {
           localStorage.getItem('user').slice(1) || 'user'}
         !
       </h1>
-      <p>
+      <p className='white'>
         The data refrash every 8 Hours, latest update:{' '}
-        {Date.now().toLocaleString()}
+        {new Date.now().toLocaleString()}
       </p>
 
       <div className="header-right">
