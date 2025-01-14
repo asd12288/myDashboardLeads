@@ -20,10 +20,7 @@ function Navbar() {
           localStorage.getItem('user').slice(1) || 'user'}
         !
       </h1>
-      <p className='white'>
-        The data refrash every 8 Hours
-      </p>
-
+      <p className="white">The data refrash every 8 Hours</p>
       <div className="header-right">
         <img className="icon-account" src={accountImage} alt="account" />
         <span className="username">
