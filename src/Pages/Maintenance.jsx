@@ -18,11 +18,7 @@ function Maintenance() {
         Our application is currently undergoing maintenance. We appreciate your
         patience.
       </p>
-      <img
-        src="https://via.placeholder.com/400x200"
-        alt="maintenance illustration"
-        style={{ marginTop: "1rem" }}
-      />
+      
     </div>
   );
 }
