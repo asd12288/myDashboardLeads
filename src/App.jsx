@@ -9,7 +9,7 @@ import { BaseUrlProvider } from "./context/BaseUrlContext";
 import Maintenance from "./Pages/Maintenance";
 
 function App() {
-  const MAINTENANCE_MODE = true;
+  const MAINTENANCE_MODE = false;
 
   if (MAINTENANCE_MODE) {
     // Render Maintenance mode
