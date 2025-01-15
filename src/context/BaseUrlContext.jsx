@@ -35,7 +35,7 @@ export function BaseUrlProvider({ children }) {
   }, [BASE_URL]);
 
   const toggleMaintenanceMode = async () => {
-    const newStatus = MAINTENANCE_MODE ? "maintenance" : "active";
+    const newStatus = MAINTENANCE_MODE ? "active" : "maintenance";
     try {
       const res = await fetch(`${BASE_URL}/api/app-status`, {
         method: "PATCH",
@@ -53,13 +53,14 @@ export function BaseUrlProvider({ children }) {
       }
 
       const resData = await res.json();
+      console.log("New status:", resData.status);
       setMAINTENANCE_MODE(resData.status === "maintenance");
+      alert("Maintenance mode updated successfully");
     } catch (error) {
       console.error("Error updating app status:", error);
       alert("An error occurred while updating app status.");
     }
   };
-
   return (
     <BaseUrlContext.Provider
       value={{
