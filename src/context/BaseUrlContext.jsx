@@ -39,7 +39,7 @@ export function BaseUrlProvider({ children }) {
     const newStatus = !MAINTENANCE_MODE ? "maintenance" : "active";
     try {
       const res = await fetch(`${BASE_URL}/api/app-status`, {
-        method: "PUT",
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
           role: localStorage.getItem("role"),
