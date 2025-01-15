@@ -54,7 +54,7 @@ export function BaseUrlProvider({ children }) {
 
       const resData = await res.json();
       console.log("New status:", resData.status);
-      setMAINTENANCE_MODE(resData.status === "maintenance");
+      setMAINTENANCE_MODE(resData.status);
       alert("Maintenance mode updated successfully");
     } catch (error) {
       console.error("Error updating app status:", error);
