@@ -20,6 +20,9 @@ function App() {
           <Route element={<RequireAdmin />}>
             <Route path="/admin" element={<Admin />} />
           </Route>
+
+          <Route path="/login" element={<Login />} />
+
           <Route path="*" element={<Maintenance />} />
         </Routes>
       </Router>
