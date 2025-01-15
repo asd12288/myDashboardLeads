@@ -1,4 +1,3 @@
-import { use } from "react";
 import { createContext } from "react";
 import { useState, useEffect } from "react";
 
@@ -36,7 +35,7 @@ export function BaseUrlProvider({ children }) {
   }, [BASE_URL]);
 
   const toggleMaintenanceMode = async () => {
-    const newStatus = !MAINTENANCE_MODE ? "maintenance" : "active";
+    const newStatus = MAINTENANCE_MODE ? "maintenance" : "active";
     try {
       const res = await fetch(`${BASE_URL}/api/app-status`, {
         method: "PATCH",
@@ -54,8 +53,7 @@ export function BaseUrlProvider({ children }) {
       }
 
       const resData = await res.json();
-      setMAINTENANCE_MODE(newStatus === "maintenance");
-      alert("App status updated successfully");
+      setMAINTENANCE_MODE(resData.status === "maintenance");
     } catch (error) {
       console.error("Error updating app status:", error);
       alert("An error occurred while updating app status.");
