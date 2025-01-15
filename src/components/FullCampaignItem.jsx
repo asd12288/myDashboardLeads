@@ -21,7 +21,7 @@ function FullCampaignItem({
 }) {
   const [isHovered, setIsHovered] = useState(false);
 
-  const BASE_URL = useContext(BaseUrlContext);
+  const {BASE_URL} = useContext(BaseUrlContext);
 
   return (
     <>

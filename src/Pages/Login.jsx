@@ -9,7 +9,7 @@ function Login() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const BASE_URL = useContext(BaseUrlContext);
+  const { BASE_URL } = useContext(BaseUrlContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();

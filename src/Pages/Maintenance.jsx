@@ -18,7 +18,6 @@ function Maintenance() {
         Our application is currently undergoing maintenance. We appreciate your
         patience.
       </p>
-      
     </div>
   );
 }

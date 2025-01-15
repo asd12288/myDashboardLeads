@@ -26,7 +26,7 @@ const initialState = {
 };
 
 function FullCampaignsAdmin() {
-  const BASE_URL = useContext(BaseUrlContext);
+  const { BASE_URL } = useContext(BaseUrlContext);
 
   const [campaigns, setCampaigns] = useState([]);
   const [newCampaign, setNewCampaign] = useState(initialState);
@@ -230,7 +230,8 @@ function FullCampaignsAdmin() {
 
   // Delete campaign
   const deleteCampaign = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this campaign?")) return;
+    if (!window.confirm("Are you sure you want to delete this campaign?"))
+      return;
     try {
       const response = await fetch(`${BASE_URL}/api/full-campaigns/${id}`, {
         method: "DELETE",
@@ -301,7 +302,10 @@ function FullCampaignsAdmin() {
               <td>{moneyConvertor(campaign.costPerResult)}</td>
               <td>{moneyConvertor(campaign.amountSpent)}</td>
               <td>
-                <button className="edit btn" onClick={() => startEdit(campaign)}>
+                <button
+                  className="edit btn"
+                  onClick={() => startEdit(campaign)}
+                >
                   Edit
                 </button>
                 <button

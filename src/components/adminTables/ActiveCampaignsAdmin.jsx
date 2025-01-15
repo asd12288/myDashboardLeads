@@ -3,7 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import { BaseUrlContext } from "../../context/BaseUrlContext";
 
 function ActiveCampaignsAdmin() {
-  const BASE_URL = useContext(BaseUrlContext);
+  const { BASE_URL } = useContext(BaseUrlContext);
 
   const [campaigns, setCampaigns] = useState([]);
   const [newCampaign, setNewCampaign] = useState({

@@ -2,10 +2,8 @@
 import { useContext, useEffect, useState } from "react";
 import { BaseUrlContext } from "../../context/BaseUrlContext";
 
-
-
 function BudgetAdmin() {
-  const BASE_URL = useContext(BaseUrlContext);
+  const { BASE_URL } = useContext(BaseUrlContext);
 
   const [budgetData, setBudgetData] = useState([]);
   const [newBudgetItem, setNewBudgetItem] = useState({

@@ -5,17 +5,21 @@ import Admin from "./Pages/Admin";
 import RequireAdmin from "./components/RequireAdmin";
 import Campaigns from "./Pages/Campaigns";
 import Budget from "./Pages/Budget";
-import { BaseUrlProvider } from "./context/BaseUrlContext";
+import { BaseUrlContext } from "./context/BaseUrlContext";
 import Maintenance from "./Pages/Maintenance";
+import { useContext } from "react";
 
 function App() {
-  const MAINTENANCE_MODE = false;
+  const { MAINTENANCE_MODE } = useContext(BaseUrlContext);
 
   if (MAINTENANCE_MODE) {
     // Render Maintenance mode
     return (
       <Router>
         <Routes>
+          <Route element={<RequireAdmin />}>
+            <Route path="/admin" element={<Admin />} />
+          </Route>
           <Route path="*" element={<Maintenance />} />
         </Routes>
       </Router>
@@ -24,28 +28,26 @@ function App() {
 
   // Otherwise, render your normal app
   return (
-    <BaseUrlProvider>
-      <Router>
-        <Routes>
-          {/* public route */}
-          <Route path="/login" element={<Login />} />
+    <Router>
+      <Routes>
+        {/* public route */}
+        <Route path="/login" element={<Login />} />
 
-          {/* private route */}
-          <Route element={<RequireAuth />}>
-            <Route path="/" element={<Budget />} />
-            <Route path="/campaign" element={<Campaigns />} />
-          </Route>
+        {/* private route */}
+        <Route element={<RequireAuth />}>
+          <Route path="/" element={<Budget />} />
+          <Route path="/campaign" element={<Campaigns />} />
+        </Route>
 
-          {/* admin route */}
-          <Route element={<RequireAdmin />}>
-            <Route path="/admin" element={<Admin />} />
-          </Route>
+        {/* admin route */}
+        <Route element={<RequireAdmin />}>
+          <Route path="/admin" element={<Admin />} />
+        </Route>
 
-          {/* redirect to login if not authenticated */}
-          <Route path="*" element={<Login />} />
-        </Routes>
-      </Router>
-    </BaseUrlProvider>
+        {/* redirect to login if not authenticated */}
+        <Route path="*" element={<Login />} />
+      </Routes>
+    </Router>
   );
 }
 

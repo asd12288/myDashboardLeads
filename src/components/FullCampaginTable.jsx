@@ -27,7 +27,7 @@ function FullCampaignTable() {
   const [isLoading, setIsLoading] = useState(false);
   const [hoveredColumn, setHoveredColumn] = useState(null);
 
-  const BASE_URL = useContext(BaseUrlContext);
+  const {BASE_URL} = useContext(BaseUrlContext);
 
   useEffect(() => {
     const fetchData = async () => {

@@ -19,7 +19,7 @@ function Budget() {
   const [lowBalance, setLowBalance] = useState(false);
 
   // BASE URL
-  const BASE_URL = useContext(BaseUrlContext);
+  const { BASE_URL } = useContext(BaseUrlContext);
 
   // 2) Fetch data
   useEffect(() => {
