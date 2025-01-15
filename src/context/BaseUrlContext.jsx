@@ -24,9 +24,7 @@ export function BaseUrlProvider({ children }) {
           return;
         }
         const data = await res.json();
-        setMAINTENANCE_MODE(
-          data.status === "maintenance" || data.status === "active"
-        );
+        setMAINTENANCE_MODE(data.status === "maintenance");
       } catch (error) {
         console.error("Error fetching app status", error);
       }
@@ -54,7 +52,7 @@ export function BaseUrlProvider({ children }) {
 
       const resData = await res.json();
       console.log("New status:", resData.status);
-      setMAINTENANCE_MODE(resData.status);
+      setMAINTENANCE_MODE(resData.status === "maintenance");
       alert("Maintenance mode updated successfully");
     } catch (error) {
       console.error("Error updating app status:", error);
