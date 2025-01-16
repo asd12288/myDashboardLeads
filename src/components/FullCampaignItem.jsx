@@ -1,7 +1,7 @@
-import { useContext, useState } from 'react';
-import styles from './FullCampaignItem.module.css';
-import { moneyConvertor } from '../utilities/moneyConvertor';
-import { BaseUrlContext } from '../context/BaseUrlContext';
+import { useContext, useState } from "react";
+import styles from "./FullCampaignItem.module.css";
+import { moneyConvertor } from "../utilities/moneyConvertor";
+import { BaseUrlContext } from "../context/BaseUrlContext";
 
 function FullCampaignItem({
   campaignName,
@@ -21,7 +21,7 @@ function FullCampaignItem({
 }) {
   const [isHovered, setIsHovered] = useState(false);
 
-  const {BASE_URL} = useContext(BaseUrlContext);
+  const { BASE_URL } = useContext(BaseUrlContext);
 
   return (
     <>
@@ -52,7 +52,7 @@ function FullCampaignItem({
       {isHovered && imageUrl && (
         <div className={styles.imagePopup}>
           <img
-            src={`${BASE_URL}${imageUrl}`}
+            src={`${imageUrl}`}
             alt="Campaign Image"
             className={styles.previewImage}
           />
