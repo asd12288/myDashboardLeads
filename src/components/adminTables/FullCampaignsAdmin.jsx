@@ -338,6 +338,7 @@ function FullCampaignsAdmin() {
           <option value="Learning">Learning</option>
           <option value="Active">Active</option>
           <option value="Paused">Paused</option>
+          <option value="Inactive">Inactive</option>
         </select>
         <input
           type="number"
@@ -441,6 +442,7 @@ function FullCampaignsAdmin() {
                   <option value="Learning">Learning</option>
                   <option value="Active">Active</option>
                   <option value="Paused">Paused</option>
+                  <option value="Inactive">Inactive</option>
                 </select>
               </label>
               <label>
