@@ -417,133 +417,147 @@ function FullCampaignsAdmin() {
 
       {/* Edit Campaign Form */}
       {isEditing && editCampaign && (
-        <div>
-          <h3>Edit Campaign (ID={editCampaign._id})</h3>
-          <label>
-            Campaign Name
-            <input
-              type="text"
-              name="campaignName"
-              placeholder="Campaign Name"
-              value={editCampaign.campaignName}
-              onChange={handleEditCampaignChange}
-            />
-          </label>
-          <label>
-            Status
-            <select
-              name="status"
-              value={editCampaign.status}
-              onChange={handleEditCampaignChange}
-            >
-              <option value="Learning">Learning</option>
-              <option value="Active">Active</option>
-              <option value="Paused">Paused</option>
-            </select>
-          </label>
-          <label>
-            Budget Daily
-            <input
-              type="number"
-              name="budgetDaily"
-              placeholder="Daily Budget"
-              value={editCampaign.budgetDaily}
-              onChange={handleEditCampaignChange}
-            />
-          </label>
-          <label>
-            Results
-            <input
-              type="number"
-              name="results"
-              placeholder="Results"
-              value={editCampaign.results}
-              onChange={handleEditCampaignChange}
-            />
-          </label>
-          <label>
-            Reaches
-            <input
-              type="number"
-              name="reaches"
-              placeholder="Reaches"
-              value={editCampaign.reaches}
-              onChange={handleEditCampaignChange}
-            />
-          </label>
-          <label>
-            Impressions
-            <input
-              type="number"
-              name="impressions"
-              placeholder="Impressions"
-              value={editCampaign.impressions}
-              onChange={handleEditCampaignChange}
-            />
-          </label>
-          <label>
-            Link Clicks
-            <input
-              type="number"
-              name="linkClicks"
-              placeholder="Link Clicks"
-              value={editCampaign.linkClicks}
-              onChange={handleEditCampaignChange}
-            />
-          </label>
-          <label>
-            Clicks
-            <input
-              type="number"
-              name="clicks"
-              placeholder="Clicks"
-              value={editCampaign.clicks}
-              onChange={handleEditCampaignChange}
-            />
-          </label>
-          <label>
-            Cost Per Result
-            <input
-              type="number"
-              name="costPerResult"
-              placeholder="Cost Per Result"
-              value={editCampaign.costPerResult}
-              onChange={handleEditCampaignChange}
-            />
-          </label>
-          {/* cpm, cpc, ctr, amountSpent are automatically recalculated */}
-          <label>
-            Starting Date
-            <input
-              type="date"
-              name="startingDate"
-              placeholder="Starting Date"
-              value={editCampaign.startingDate}
-              onChange={handleEditCampaignChange}
-            />
-          </label>
-          <label>
-            Image
-            <input
-              type="file"
-              name="image"
-              accept="image/*"
-              onChange={handleEditCampaignChange}
-            />
-          </label>
-          {(editCampaign.imagePreview || editCampaign.imageUrl) && (
-            <img
-              src={editCampaign.imagePreview || editCampaign.imageUrl}
-              alt="Campaign Preview"
-              style={{ maxWidth: "200px", display: "block", marginTop: "10px" }}
-            />
-          )}
-          <button className="save btn" onClick={saveEdit}>
-            Save Changes
-          </button>
-          <button className="cancel btn" onClick={cancelEdit}>
-            Cancel
-          </button>
+        <div className="all-edit-form">
+          <div className="edit-campaign-form">
+            <div className="edit-campaign-inputs">
+              <h3>Edit Campaign (ID={editCampaign._id})</h3>
+              <label>
+                Campaign Name
+                <input
+                  type="text"
+                  name="campaignName"
+                  placeholder="Campaign Name"
+                  value={editCampaign.campaignName}
+                  onChange={handleEditCampaignChange}
+                />
+              </label>
+              <label>
+                Status
+                <select
+                  name="status"
+                  value={editCampaign.status}
+                  onChange={handleEditCampaignChange}
+                >
+                  <option value="Learning">Learning</option>
+                  <option value="Active">Active</option>
+                  <option value="Paused">Paused</option>
+                </select>
+              </label>
+              <label>
+                Budget Daily
+                <input
+                  type="number"
+                  name="budgetDaily"
+                  placeholder="Daily Budget"
+                  value={editCampaign.budgetDaily}
+                  onChange={handleEditCampaignChange}
+                />
+              </label>
+              <label>
+                Results
+                <input
+                  type="number"
+                  name="results"
+                  placeholder="Results"
+                  value={editCampaign.results}
+                  onChange={handleEditCampaignChange}
+                />
+              </label>
+              <label>
+                Reaches
+                <input
+                  type="number"
+                  name="reaches"
+                  placeholder="Reaches"
+                  value={editCampaign.reaches}
+                  onChange={handleEditCampaignChange}
+                />
+              </label>
+              <label>
+                Impressions
+                <input
+                  type="number"
+                  name="impressions"
+                  placeholder="Impressions"
+                  value={editCampaign.impressions}
+                  onChange={handleEditCampaignChange}
+                />
+              </label>
+              <label>
+                Link Clicks
+                <input
+                  type="number"
+                  name="linkClicks"
+                  placeholder="Link Clicks"
+                  value={editCampaign.linkClicks}
+                  onChange={handleEditCampaignChange}
+                />
+              </label>
+              <label>
+                Clicks
+                <input
+                  type="number"
+                  name="clicks"
+                  placeholder="Clicks"
+                  value={editCampaign.clicks}
+                  onChange={handleEditCampaignChange}
+                />
+              </label>
+              <label>
+                Cost Per Result
+                <input
+                  type="number"
+                  name="costPerResult"
+                  placeholder="Cost Per Result"
+                  value={editCampaign.costPerResult}
+                  onChange={handleEditCampaignChange}
+                />
+              </label>
+              {/* cpm, cpc, ctr, amountSpent are automatically recalculated */}
+              <label>
+                Starting Date
+                <input
+                  type="date"
+                  name="startingDate"
+                  placeholder="Starting Date"
+                  value={editCampaign.startingDate}
+                  onChange={handleEditCampaignChange}
+                />
+              </label>
+              <label>
+                Image
+                <input
+                  type="file"
+                  name="image"
+                  accept="image/*"
+                  onChange={handleEditCampaignChange}
+                />
+              </label>
+            </div>
+            {(editCampaign.imagePreview || editCampaign.imageUrl) && (
+              <>
+                <img
+                  className="display-image-edit-form"
+                  src={editCampaign.imagePreview || editCampaign.imageUrl}
+                  alt="Campaign Preview"
+                  style={{
+                    maxWidth: "500px",
+                    maxHeight: "500px",
+                    display: "block",
+                    marginTop: "10px",
+                  }}
+                />
+              </>
+            )}
+          </div>
+          <div className="edit-from-buttons">
+            <button className="save btn" onClick={saveEdit}>
+              Save Changes
+            </button>
+            <button className="cancel btn" onClick={cancelEdit}>
+              Cancel
+            </button>
+          </div>
         </div>
       )}
     </section>

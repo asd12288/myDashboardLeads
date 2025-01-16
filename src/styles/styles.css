@@ -932,5 +932,31 @@ th:hover .tooltip {
 .btn-maintenance:hover {
   background-color: var(--dark-color);
   color: #fff;
+}
 
+.all-edit-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-campaign-form {
+  display: flex;
+  align-items: center;
+}
+
+.edit-campaign-inputs {
+  display: flex;
+  flex-direction: column;
+}
+
+.display-image-edit-form {
+  background-color: #cac8c8;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.edit-from-buttons button {
+  font-size: 2rem;
 }
