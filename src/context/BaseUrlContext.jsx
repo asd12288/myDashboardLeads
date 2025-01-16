@@ -1,7 +1,7 @@
 import { createContext } from "react";
 import { useState, useEffect } from "react";
 
-const DEV_BASE_URL = "http://localhost:30010";
+// const DEV_BASE_URL = "http://localhost:3001";
 const PROD_URL = "https://mydashleads-70713a400aca.herokuapp.com"; // For production\\
 
 export const BaseUrlContext = createContext();
@@ -36,7 +36,7 @@ export function BaseUrlProvider({ children }) {
     const newStatus = MAINTENANCE_MODE ? "active" : "maintenance";
     try {
       const res = await fetch(`${BASE_URL}/api/app-status`, {
-        method: "PATCH",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
           role: localStorage.getItem("role"),

@@ -67,7 +67,7 @@ function BudgetAdmin() {
   const saveEdit = async () => {
     if (!editItem) return;
     try {
-      const res = await fetch(`${BASE_URL}/api/budget/${editItem.id}`, {
+      const res = await fetch(`${BASE_URL}/api/budget/${editItem._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -122,7 +122,7 @@ function BudgetAdmin() {
                 </button>
                 <button
                   className="delete btn "
-                  onClick={() => deleteBudgetItem(item.id)}
+                  onClick={() => deleteBudgetItem(item._id)}
                 >
                   Delete
                 </button>

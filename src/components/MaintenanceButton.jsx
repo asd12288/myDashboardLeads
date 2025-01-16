@@ -10,8 +10,9 @@ function MaintenanceButton() {
         onClick={toggleMaintenanceMode}
         className="btn btn-primary btn-maintenance"
       >
-        {MAINTENANCE_MODE ? "Deactivate Maintenance" : "Activate Maintenance"}
-        Mode
+        {MAINTENANCE_MODE
+          ? "Deactivate Maintenance Mode"
+          : "Activate Maintenance Mode"}
       </button>
       <p>
         Mode:{" "}

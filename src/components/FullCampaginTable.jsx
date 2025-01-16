@@ -125,7 +125,7 @@ function FullCampaignTable() {
 
             return (
               <FullCampaignItem
-                key={item.id}
+                key={item._id}
                 campaignName={item.campaignName}
                 status={item.status}
                 dailyBudget={item.budgetDaily}

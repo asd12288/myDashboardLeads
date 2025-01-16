@@ -3,7 +3,7 @@ import { useEffect, useState, useContext } from "react";
 import { BaseUrlContext } from "../../context/BaseUrlContext";
 
 function CampaignsDetailsAdmin() {
-  const {BASE_URL} = useContext(BaseUrlContext);
+  const { BASE_URL } = useContext(BaseUrlContext);
 
   const [details, setDetails] = useState([]);
   const [newDetail, setNewDetail] = useState({
@@ -62,7 +62,7 @@ function CampaignsDetailsAdmin() {
   const saveEdit = async () => {
     if (!editDetail) return;
     // if there's no real ID, you may have to pass index or something else
-    const editId = editDetail.id || "";
+    const editId = editDetail._id || "";
     try {
       const res = await fetch(`${BASE_URL}/api/campaigns-details/${editId}`, {
         method: "PUT",
@@ -109,7 +109,7 @@ function CampaignsDetailsAdmin() {
         </thead>
         <tbody>
           {details.map((item, idx) => {
-            const rowId = item.id ?? idx; // fallback to index if item.id doesn’t exist
+            const rowId = item._id ?? idx; // fallback to index if item.id doesn’t exist
             return (
               <tr key={rowId}>
                 <td>{item.type}</td>
@@ -118,7 +118,7 @@ function CampaignsDetailsAdmin() {
                 <td>
                   <button
                     className="edit"
-                    onClick={() => startEdit({ ...item, id: rowId })}
+                    onClick={() => startEdit({ ...item, _id: rowId })}
                   >
                     Edit
                   </button>
@@ -174,7 +174,7 @@ function CampaignsDetailsAdmin() {
             padding: "1rem",
           }}
         >
-          <h3>Edit Detail (ID={editDetail.id})</h3>
+          <h3>Edit Detail (ID={editDetail._id})</h3>
           <input
             placeholder="Type"
             value={editDetail.type}

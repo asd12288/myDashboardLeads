@@ -18,7 +18,7 @@ function BudgetTable({ budgetData, fee }) {
         </thead>
         <tbody>
           {budgetData.map((item) => (
-            <BudgetItem key={item.id} amount={item.amount} date={item.date} />
+            <BudgetItem key={item._id} amount={item.amount} date={item.date} />
           ))}
           <tr>
             <td colSpan="2" style={{ textAlign: "left", fontWeight: "bold" }}>

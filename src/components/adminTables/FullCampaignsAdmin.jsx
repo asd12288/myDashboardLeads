@@ -202,7 +202,7 @@ function FullCampaignsAdmin() {
       }
 
       const response = await fetch(
-        `${BASE_URL}/api/full-campaigns/${editCampaign.id}`,
+        `${BASE_URL}/api/full-campaigns/${editCampaign._id}`,
         {
           method: "PUT",
           headers: {
@@ -281,7 +281,7 @@ function FullCampaignsAdmin() {
         </thead>
         <tbody>
           {campaigns.map((campaign) => (
-            <tr key={campaign.id}>
+            <tr key={campaign._id}>
               <td>{campaign.campaignName}</td>
               <td>{campaign.status}</td>
               <td>{moneyConvertor(campaign.budgetDaily)}</td>
@@ -310,7 +310,7 @@ function FullCampaignsAdmin() {
                 </button>
                 <button
                   className="delete btn"
-                  onClick={() => deleteCampaign(campaign.id)}
+                  onClick={() => deleteCampaign(campaign._id)}
                 >
                   Delete
                 </button>
@@ -418,7 +418,7 @@ function FullCampaignsAdmin() {
       {/* Edit Campaign Form */}
       {isEditing && editCampaign && (
         <div>
-          <h3>Edit Campaign (ID={editCampaign.id})</h3>
+          <h3>Edit Campaign (ID={editCampaign._id})</h3>
           <label>
             Campaign Name
             <input
