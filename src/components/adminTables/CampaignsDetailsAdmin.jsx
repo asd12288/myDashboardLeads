@@ -1,6 +1,7 @@
 // components/CampaignsDetailsAdmin.jsx
 import { useEffect, useState, useContext } from "react";
 import { BaseUrlContext } from "../../context/BaseUrlContext";
+import toast from "react-hot-toast";
 
 function CampaignsDetailsAdmin() {
   const { BASE_URL } = useContext(BaseUrlContext);
@@ -45,6 +46,7 @@ function CampaignsDetailsAdmin() {
       if (res.ok) {
         await fetchDetails();
         setNewDetail({ id: "", type: "", numAccounts: "", costPerMonth: "" });
+        toast.success("Account Added!");
       }
     } catch (error) {
       console.error("Error adding detail", error);
@@ -89,6 +91,7 @@ function CampaignsDetailsAdmin() {
       });
       if (res.ok) {
         fetchDetails();
+        toast.success("Account Deleted");
       }
     } catch (error) {
       console.error("Error deleting detail", error);

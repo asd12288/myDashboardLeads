@@ -1,6 +1,7 @@
 // components/BudgetAdmin.jsx
 import { useContext, useEffect, useState } from "react";
 import { BaseUrlContext } from "../../context/BaseUrlContext";
+import toast from "react-hot-toast";
 
 function BudgetAdmin() {
   const { BASE_URL } = useContext(BaseUrlContext);
@@ -47,6 +48,7 @@ function BudgetAdmin() {
         // Refresh the list and reset the form
         await fetchBudgetData();
         setNewBudgetItem({ id: "", date: "", amount: "" });
+        toast.success("Budget Added!");
       }
     } catch (error) {
       console.error("Error adding Budget Item", error);
@@ -92,6 +94,7 @@ function BudgetAdmin() {
       });
       if (res.ok) {
         fetchBudgetData();
+        toast.success('Budget Deleted')
       }
     } catch (error) {
       console.error("Error deleting Budget Item", error);

@@ -2,6 +2,7 @@
 import { useState, useEffect, useContext } from "react";
 import { moneyConvertor } from "../../utilities/moneyConvertor";
 import { BaseUrlContext } from "../../context/BaseUrlContext";
+import toast from "react-hot-toast";
 
 const initialState = {
   campaignName: "",
@@ -55,7 +56,7 @@ function FullCampaignsAdmin() {
       setCampaigns(data);
     } catch (error) {
       console.error("Error fetching campaigns:", error);
-      alert(`Error fetching campaigns: ${error.message}`);
+      toast.error(`Error fetching campaigns: ${error.message}`);
     }
   };
 
@@ -102,7 +103,7 @@ function FullCampaignsAdmin() {
   // Add a new campaign
   const addCampaign = async () => {
     if (!newCampaign.campaignName) {
-      alert("Please enter a campaign name");
+      toast.error("Please enter a campaign name");
       return;
     }
 
@@ -132,16 +133,16 @@ function FullCampaignsAdmin() {
       });
 
       if (response.ok) {
-        alert("Campaign added successfully");
+        toast.success("Campaign added successfully");
         setNewCampaign(initialState);
         fetchCampaigns();
       } else {
         const errorData = await response.json();
-        alert(`Error: ${errorData.message}`);
+        toast.error(`Error: ${errorData.message}`);
       }
     } catch (error) {
       console.error("Error adding campaign:", error);
-      alert("An error occurred while adding the campaign.");
+      toast.error("An error occurred while adding the campaign.");
     } finally {
       setIsLoading(false);
     }
@@ -213,16 +214,16 @@ function FullCampaignsAdmin() {
       );
 
       if (response.ok) {
-        alert("Campaign updated successfully");
+        toast.success("Campaign updated successfully");
         fetchCampaigns();
         cancelEdit();
       } else {
         const errorData = await response.json();
-        alert(`Error: ${errorData.message}`);
+        toast.error(`Error: ${errorData.message}`);
       }
     } catch (error) {
       console.error("Error updating campaign:", error);
-      alert("An error occurred while updating the campaign.");
+      toast.error("An error occurred while updating the campaign.");
     } finally {
       setIsLoading(false);
     }
@@ -241,15 +242,15 @@ function FullCampaignsAdmin() {
       });
 
       if (response.ok) {
-        alert("Campaign deleted successfully");
+        toast.success("Campaign deleted successfully");
         fetchCampaigns();
       } else {
         const errorData = await response.json();
-        alert(`Error: ${errorData.message}`);
+        toast.error(`Error: ${errorData.message}`);
       }
     } catch (error) {
       console.error("Error deleting campaign:", error);
-      alert("An error occurred while deleting the campaign.");
+      toast.error("An error occurred while deleting the campaign.");
     }
   };
 

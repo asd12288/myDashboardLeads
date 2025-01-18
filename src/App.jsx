@@ -8,6 +8,7 @@ import Budget from "./Pages/Budget";
 import { BaseUrlContext } from "./context/BaseUrlContext";
 import Maintenance from "./Pages/Maintenance";
 import { useContext } from "react";
+import { Toaster, resolveValue } from "react-hot-toast";
 
 function App() {
   const { MAINTENANCE_MODE } = useContext(BaseUrlContext);
@@ -51,6 +52,7 @@ function App() {
         <Route path="*" element={<Login />} />
       </Routes>
     </Router>
+    
   );
 }
 
