@@ -271,6 +271,9 @@ main h2 {
 .total-spending {
   margin-top: 15px;
   text-align: right;
+  padding: 2rem 2rem ;
+  line-height: 3rem;
+  
 }
 
 /* Maintenance Table */
